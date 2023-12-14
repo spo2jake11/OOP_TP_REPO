@@ -26,13 +26,13 @@ public class WebMenuFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        GetBackbtn = new javax.swing.JButton();
-        UpdateMenubtn = new javax.swing.JButton();
-        CreateMenubtn = new javax.swing.JButton();
+        returnBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        menuTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -42,30 +42,30 @@ public class WebMenuFrame extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1280, 720));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        GetBackbtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        GetBackbtn.setText("Get Back");
-        GetBackbtn.setPreferredSize(new java.awt.Dimension(200, 35));
-        GetBackbtn.addActionListener(new java.awt.event.ActionListener() {
+        returnBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        returnBtn.setText("Back");
+        returnBtn.setPreferredSize(new java.awt.Dimension(200, 35));
+        returnBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GetBackbtnActionPerformed(evt);
+                returnBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(GetBackbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 150, 30));
+        getContentPane().add(returnBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 100, 30));
 
-        UpdateMenubtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        UpdateMenubtn.setText("Update Menu");
-        UpdateMenubtn.setPreferredSize(new java.awt.Dimension(200, 35));
-        getContentPane().add(UpdateMenubtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1050, 170, 200, 35));
+        updateBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        updateBtn.setText("Update Menu");
+        updateBtn.setPreferredSize(new java.awt.Dimension(200, 35));
+        getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 170, 200, 35));
 
-        CreateMenubtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        CreateMenubtn.setText("Create Menu");
-        CreateMenubtn.setPreferredSize(new java.awt.Dimension(200, 35));
-        CreateMenubtn.addActionListener(new java.awt.event.ActionListener() {
+        createBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        createBtn.setText("Create Menu");
+        createBtn.setPreferredSize(new java.awt.Dimension(200, 35));
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CreateMenubtnActionPerformed(evt);
+                createBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(CreateMenubtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 170, 200, 35));
+        getContentPane().add(createBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, 200, 35));
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(0, 150));
@@ -99,7 +99,10 @@ public class WebMenuFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, 100));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+
+        menuTable.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -125,26 +128,31 @@ public class WebMenuFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
+        menuTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(menuTable);
+        if (menuTable.getColumnModel().getColumnCount() > 0) {
+            menuTable.getColumnModel().getColumn(0).setResizable(false);
+            menuTable.getColumnModel().getColumn(0).setPreferredWidth(10);
+            menuTable.getColumnModel().getColumn(1).setResizable(false);
+            menuTable.getColumnModel().getColumn(1).setPreferredWidth(10);
+            menuTable.getColumnModel().getColumn(2).setResizable(false);
+            menuTable.getColumnModel().getColumn(2).setPreferredWidth(500);
+            menuTable.getColumnModel().getColumn(3).setResizable(false);
+            menuTable.getColumnModel().getColumn(3).setPreferredWidth(10);
         }
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 1200, 390));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 1200, 390));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CreateMenubtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateMenubtnActionPerformed
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CreateMenubtnActionPerformed
+    }//GEN-LAST:event_createBtnActionPerformed
 
-    private void GetBackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GetBackbtnActionPerformed
+    private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_GetBackbtnActionPerformed
+    }//GEN-LAST:event_returnBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,12 +190,12 @@ public class WebMenuFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton CreateMenubtn;
-    private javax.swing.JButton GetBackbtn;
-    private javax.swing.JButton UpdateMenubtn;
+    private javax.swing.JButton createBtn;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable menuTable;
+    private javax.swing.JButton returnBtn;
+    private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 }

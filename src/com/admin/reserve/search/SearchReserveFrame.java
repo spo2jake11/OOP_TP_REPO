@@ -26,24 +26,25 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        searchBtn = new javax.swing.JButton();
         otpSearchField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("OTP Finder");
-        setPreferredSize(new java.awt.Dimension(480, 320));
+        setMinimumSize(new java.awt.Dimension(0, 0));
+        setPreferredSize(new java.awt.Dimension(320, 240));
         setResizable(false);
-        setSize(new java.awt.Dimension(480, 320));
+        setSize(new java.awt.Dimension(320, 240));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                searchBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 160, 150, -1));
+        getContentPane().add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 150, -1));
 
         otpSearchField.setFont(new java.awt.Font("Verdana", 0, 25)); // NOI18N
         otpSearchField.addActionListener(new java.awt.event.ActionListener() {
@@ -51,14 +52,14 @@ public class SearchReserveFrame extends javax.swing.JFrame {
                 otpSearchFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(otpSearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 90, 250, 35));
+        getContentPane().add(otpSearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 240, 35));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_searchBtnActionPerformed
 
     private void otpSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otpSearchFieldActionPerformed
         // TODO add your handling code here:
@@ -100,7 +101,7 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JTextField otpSearchField;
+    private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
 }

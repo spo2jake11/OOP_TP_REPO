@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.admin.home;
-
+import com.admin.select.AdminSelectFrame;
 /**
  *
  * @author Admin
@@ -15,6 +15,7 @@ public class AdminHomeFrame extends javax.swing.JFrame {
      */
     public AdminHomeFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -30,13 +31,11 @@ public class AdminHomeFrame extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        passwordField = new javax.swing.JTextField();
+        usernameField = new javax.swing.JTextField();
+        signInBtn = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(0, 0));
-        setPreferredSize(new java.awt.Dimension(640, 480));
         setResizable(false);
         setSize(new java.awt.Dimension(640, 480));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -83,50 +82,50 @@ public class AdminHomeFrame extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(120, 35));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jTextField1.setText("jTextField1");
-        jTextField1.setPreferredSize(new java.awt.Dimension(250, 35));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        passwordField.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        passwordField.setPreferredSize(new java.awt.Dimension(250, 35));
+        passwordField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                passwordFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
+        getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jTextField2.setText("jTextField1");
-        jTextField2.setPreferredSize(new java.awt.Dimension(250, 35));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        usernameField.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        usernameField.setPreferredSize(new java.awt.Dimension(250, 35));
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                usernameFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
+        getContentPane().add(usernameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 170, -1, -1));
 
-        jToggleButton1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        jToggleButton1.setText("Sign In");
-        jToggleButton1.setPreferredSize(new java.awt.Dimension(150, 35));
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        signInBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        signInBtn.setText("Sign In");
+        signInBtn.setPreferredSize(new java.awt.Dimension(150, 35));
+        signInBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                signInBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
+        getContentPane().add(signInBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_passwordFieldActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_usernameFieldActionPerformed
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
+        AdminSelectFrame add = new AdminSelectFrame();
+        this.dispose();
+        add.setVisible(true);
+    }//GEN-LAST:event_signInBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -168,8 +167,8 @@ public class AdminHomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JTextField passwordField;
+    private javax.swing.JToggleButton signInBtn;
+    private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
 }
