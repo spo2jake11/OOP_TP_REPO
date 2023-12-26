@@ -27,11 +27,17 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         searchBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         otpSearchField = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("OTP Finder");
-        setMinimumSize(new java.awt.Dimension(0, 0));
+        setBackground(new java.awt.Color(255, 153, 51));
+        setForeground(new java.awt.Color(255, 153, 51));
+        setMinimumSize(new java.awt.Dimension(640, 480));
         setPreferredSize(new java.awt.Dimension(320, 240));
         setResizable(false);
         setSize(new java.awt.Dimension(320, 240));
@@ -44,7 +50,12 @@ public class SearchReserveFrame extends javax.swing.JFrame {
                 searchBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 150, -1));
+        getContentPane().add(searchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, 150, -1));
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel1.setText("Reservation OTP Code:");
+        jLabel1.setMinimumSize(new java.awt.Dimension(64, 38));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, 210, 30));
 
         otpSearchField.setFont(new java.awt.Font("Verdana", 0, 25)); // NOI18N
         otpSearchField.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +63,17 @@ public class SearchReserveFrame extends javax.swing.JFrame {
                 otpSearchFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(otpSearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 240, 35));
+        getContentPane().add(otpSearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 280, 35));
+
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 640, 130));
+
+        jPanel2.setBackground(new java.awt.Color(255, 153, 0));
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 100));
+
+        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jLabel2.setText("Please enter the Reservation OTP Code sent to your email");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 120, 540, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -101,6 +122,10 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField otpSearchField;
     private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
