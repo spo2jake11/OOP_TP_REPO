@@ -36,11 +36,12 @@ public class AdminSelectFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(252, 222, 176));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Where to go...");
+        jLabel1.setText("Where to go?");
         jLabel1.setPreferredSize(new java.awt.Dimension(150, 26));
 
         reserveSelectBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
