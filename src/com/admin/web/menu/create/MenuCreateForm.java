@@ -65,7 +65,6 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(640, 480));
-        setPreferredSize(new java.awt.Dimension(640, 480));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -116,6 +115,11 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -178,6 +182,10 @@ public class MenuCreateForm extends javax.swing.JFrame {
         // choose image from fileChooser
         openFileChooser();
     }//GEN-LAST:event_uploadImageActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
