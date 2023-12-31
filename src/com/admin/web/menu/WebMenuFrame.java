@@ -4,7 +4,7 @@
  */
 package com.admin.web.menu;
 
-import UpdateMenuForm.UpdateMenuFormm;
+import com.admin.web.menu.update.UpdateMenuForm;
 import com.admin.select.AdminSelectFrame;
 import com.admin.web.menu.create.MenuCreateForm;
 
@@ -166,7 +166,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_returnBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-       UpdateMenuFormm updmenu= new UpdateMenuFormm();
+       UpdateMenuForm updmenu= new UpdateMenuForm();
        updmenu.setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
