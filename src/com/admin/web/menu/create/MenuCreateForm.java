@@ -48,19 +48,19 @@ public class MenuCreateForm extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        menuNameTitle = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        descriptionTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        uploadImage = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        descriptionTextField = new javax.swing.JTextArea();
+        categoryTitle = new javax.swing.JLabel();
+        categoryTextField = new javax.swing.JComboBox<>();
+        imageOrThumbnailTitle = new javax.swing.JLabel();
+        priceTextField = new javax.swing.JTextField();
+        priceTitle = new javax.swing.JLabel();
+        uploadImageButton = new javax.swing.JButton();
+        cancelMenuButton = new javax.swing.JButton();
+        createMenuButton = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,107 +85,107 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel2.setText("Menu Name");
-        jLabel2.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+        menuNameTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuNameTitle.setText("Menu Name");
+        menuNameTitle.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(menuNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
         jTextField1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jTextField1.setPreferredSize(new java.awt.Dimension(250, 25));
         getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel3.setText("Description");
-        jLabel3.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
+        descriptionTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        descriptionTitle.setText("Description");
+        descriptionTitle.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(descriptionTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, -1));
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(15);
-        jTextArea1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jTextArea1.setRows(4);
-        jScrollPane1.setViewportView(jTextArea1);
+        descriptionTextField.setColumns(15);
+        descriptionTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        descriptionTextField.setRows(4);
+        jScrollPane1.setViewportView(descriptionTextField);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 260, 100));
 
-        jLabel4.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel4.setText("Category");
-        jLabel4.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
+        categoryTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        categoryTitle.setText("Category");
+        categoryTitle.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(categoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        categoryTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        categoryTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoryTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                categoryTextFieldActionPerformed(evt);
             }
         });
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
+        getContentPane().add(categoryTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
 
-        jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel5.setText("Image/Thumbnail");
-        jLabel5.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
+        imageOrThumbnailTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        imageOrThumbnailTitle.setText("Image/Thumbnail");
+        imageOrThumbnailTitle.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(imageOrThumbnailTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jTextField2.setPreferredSize(new java.awt.Dimension(250, 25));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        priceTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        priceTextField.setPreferredSize(new java.awt.Dimension(250, 25));
+        getContentPane().add(priceTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel6.setText("Price");
-        jLabel6.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
+        priceTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        priceTitle.setText("Price");
+        priceTitle.setPreferredSize(new java.awt.Dimension(200, 25));
+        getContentPane().add(priceTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        uploadImage.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        uploadImage.setText("Upload");
-        uploadImage.addActionListener(new java.awt.event.ActionListener() {
+        uploadImageButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        uploadImageButton.setText("Upload");
+        uploadImageButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadImageActionPerformed(evt);
+                uploadImageButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(uploadImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 160, -1));
+        getContentPane().add(uploadImageButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 160, -1));
 
-        jButton2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton2.setText("Cancel");
-        jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        cancelMenuButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        cancelMenuButton.setText("Cancel");
+        cancelMenuButton.setPreferredSize(new java.awt.Dimension(150, 30));
+        cancelMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                cancelMenuButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
+        getContentPane().add(cancelMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton3.setText("Create");
-        jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        createMenuButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        createMenuButton.setText("Create");
+        createMenuButton.setPreferredSize(new java.awt.Dimension(150, 30));
+        createMenuButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                createMenuButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
+        getContentPane().add(createMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
         getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 140, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void createMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMenuButtonActionPerformed
        
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_createMenuButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void cancelMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelMenuButtonActionPerformed
         WebMenuFrame web=new WebMenuFrame();
         web.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_cancelMenuButtonActionPerformed
 
-    private void uploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImageActionPerformed
+    private void uploadImageButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImageButtonActionPerformed
         // choose image from fileChooser
         openFileChooser();
-    }//GEN-LAST:event_uploadImageActionPerformed
+    }//GEN-LAST:event_uploadImageButtonActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void categoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryTextFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_categoryTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,20 +223,20 @@ public class MenuCreateForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton cancelMenuButton;
+    private javax.swing.JComboBox<String> categoryTextField;
+    private javax.swing.JLabel categoryTitle;
+    private javax.swing.JButton createMenuButton;
+    private javax.swing.JTextArea descriptionTextField;
+    private javax.swing.JLabel descriptionTitle;
     private javax.swing.JLabel imageLabel;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel imageOrThumbnailTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton uploadImage;
+    private javax.swing.JLabel menuNameTitle;
+    private javax.swing.JTextField priceTextField;
+    private javax.swing.JLabel priceTitle;
+    private javax.swing.JButton uploadImageButton;
     // End of variables declaration//GEN-END:variables
 }
