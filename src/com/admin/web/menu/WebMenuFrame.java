@@ -4,6 +4,10 @@
  */
 package com.admin.web.menu;
 
+import com.admin.web.menu.update.UpdateMenuForm;
+import com.admin.select.AdminSelectFrame;
+import com.admin.web.menu.create.MenuCreateForm;
+
 /**
  *
  * @author Admin
@@ -55,6 +59,11 @@ public class WebMenuFrame extends javax.swing.JFrame {
         updateBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         updateBtn.setText("Update Menu");
         updateBtn.setPreferredSize(new java.awt.Dimension(200, 35));
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 170, 200, 35));
 
         createBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
@@ -147,12 +156,19 @@ public class WebMenuFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        // TODO add your handling code here:
+          MenuCreateForm create=new MenuCreateForm();
+       create.setVisible(true);
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        // TODO add your handling code here:
+          AdminSelectFrame admin=new AdminSelectFrame();
+       admin.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+       UpdateMenuForm updmenu= new UpdateMenuForm();
+       updmenu.setVisible(true);
+    }//GEN-LAST:event_updateBtnActionPerformed
 
     /**
      * @param args the command line arguments
