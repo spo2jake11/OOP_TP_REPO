@@ -114,7 +114,7 @@ public class MenuCreateForm extends javax.swing.JFrame {
         getContentPane().add(categoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
         categoryTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        categoryTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoryTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Appetizers", "Main Course", "Dessert", "Beverages" }));
         categoryTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoryTextFieldActionPerformed(evt);
@@ -170,7 +170,11 @@ public class MenuCreateForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMenuButtonActionPerformed
-       
+
+        String menuName ="";
+        String description ="";
+        int price = 1;
+        
     }//GEN-LAST:event_createMenuButtonActionPerformed
 
     private void cancelMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelMenuButtonActionPerformed
