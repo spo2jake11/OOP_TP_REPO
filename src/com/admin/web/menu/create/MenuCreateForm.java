@@ -4,6 +4,7 @@
  */
 package com.admin.web.menu.create;
 import com.admin.web.menu.WebMenuFrame;
+import com.database.connection.databaseConnection;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
@@ -22,8 +23,8 @@ public class MenuCreateForm extends javax.swing.JFrame {
     }
     private void displayImage(File file) {
         ImageIcon imageIcon = new ImageIcon(file.getPath());
-        Image image = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(),imageLabel.getHeight(), Image.SCALE_SMOOTH);
-        imageLabel.setIcon(new ImageIcon(image));
+        Image image = imageIcon.getImage().getScaledInstance(menuImage.getWidth(),menuImage.getHeight(), Image.SCALE_SMOOTH);
+        menuImage.setIcon(new ImageIcon(image));
     }
 
     
@@ -49,22 +50,23 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         menuNameTitle = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        menuName = new javax.swing.JTextField();
         descriptionTitle = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        descriptionTextField = new javax.swing.JTextArea();
+        menuDetail = new javax.swing.JTextArea();
         categoryTitle = new javax.swing.JLabel();
-        categoryTextField = new javax.swing.JComboBox<>();
+        menuCategory = new javax.swing.JComboBox<>();
         imageOrThumbnailTitle = new javax.swing.JLabel();
-        priceTextField = new javax.swing.JTextField();
+        menuPrice = new javax.swing.JTextField();
         priceTitle = new javax.swing.JLabel();
         uploadImageButton = new javax.swing.JButton();
         cancelMenuButton = new javax.swing.JButton();
         createMenuButton = new javax.swing.JButton();
-        imageLabel = new javax.swing.JLabel();
+        menuImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(640, 480));
+        setMinimumSize(new java.awt.Dimension(640, 510));
+        setPreferredSize(new java.awt.Dimension(640, 480));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -90,9 +92,9 @@ public class MenuCreateForm extends javax.swing.JFrame {
         menuNameTitle.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(menuNameTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jTextField1.setPreferredSize(new java.awt.Dimension(250, 25));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        menuName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuName.setPreferredSize(new java.awt.Dimension(250, 25));
+        getContentPane().add(menuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         descriptionTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         descriptionTitle.setText("Description");
@@ -101,35 +103,35 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        descriptionTextField.setColumns(15);
-        descriptionTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        descriptionTextField.setRows(4);
-        jScrollPane1.setViewportView(descriptionTextField);
+        menuDetail.setColumns(15);
+        menuDetail.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuDetail.setRows(4);
+        jScrollPane1.setViewportView(menuDetail);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 260, 100));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 250, 100));
 
         categoryTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         categoryTitle.setText("Category");
         categoryTitle.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(categoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
-        categoryTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        categoryTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Appetizers", "Main Course", "Dessert", "Beverages" }));
-        categoryTextField.addActionListener(new java.awt.event.ActionListener() {
+        menuCategory.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Appetizers", "Main Course", "Dessert", "Beverages" }));
+        menuCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoryTextFieldActionPerformed(evt);
+                menuCategoryActionPerformed(evt);
             }
         });
-        getContentPane().add(categoryTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
+        getContentPane().add(menuCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
 
         imageOrThumbnailTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         imageOrThumbnailTitle.setText("Image/Thumbnail");
         imageOrThumbnailTitle.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(imageOrThumbnailTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
 
-        priceTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        priceTextField.setPreferredSize(new java.awt.Dimension(250, 25));
-        getContentPane().add(priceTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        menuPrice.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuPrice.setPreferredSize(new java.awt.Dimension(250, 25));
+        getContentPane().add(menuPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         priceTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         priceTitle.setText("Price");
@@ -143,7 +145,7 @@ public class MenuCreateForm extends javax.swing.JFrame {
                 uploadImageButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(uploadImageButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 160, -1));
+        getContentPane().add(uploadImageButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 270, 150, -1));
 
         cancelMenuButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         cancelMenuButton.setText("Cancel");
@@ -164,17 +166,16 @@ public class MenuCreateForm extends javax.swing.JFrame {
             }
         });
         getContentPane().add(createMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
-        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 140, 130));
+        getContentPane().add(menuImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 140, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void createMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createMenuButtonActionPerformed
-
-        String menuName ="";
-        String description ="";
-        int price = 1;
         
+        databaseConnection com = new databaseConnection();
+        com.addMenu(menuName.getText(), menuDetail.getText(), 
+                menuCategory.getActionCommand(), Integer.parseInt(menuPrice.getText()), menuImage.toString());
     }//GEN-LAST:event_createMenuButtonActionPerformed
 
     private void cancelMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelMenuButtonActionPerformed
@@ -187,9 +188,9 @@ public class MenuCreateForm extends javax.swing.JFrame {
         openFileChooser();
     }//GEN-LAST:event_uploadImageButtonActionPerformed
 
-    private void categoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryTextFieldActionPerformed
+    private void menuCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_categoryTextFieldActionPerformed
+    }//GEN-LAST:event_menuCategoryActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,18 +229,18 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelMenuButton;
-    private javax.swing.JComboBox<String> categoryTextField;
     private javax.swing.JLabel categoryTitle;
     private javax.swing.JButton createMenuButton;
-    private javax.swing.JTextArea descriptionTextField;
     private javax.swing.JLabel descriptionTitle;
-    private javax.swing.JLabel imageLabel;
     private javax.swing.JLabel imageOrThumbnailTitle;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> menuCategory;
+    private javax.swing.JTextArea menuDetail;
+    private javax.swing.JLabel menuImage;
+    private javax.swing.JTextField menuName;
     private javax.swing.JLabel menuNameTitle;
-    private javax.swing.JTextField priceTextField;
+    private javax.swing.JTextField menuPrice;
     private javax.swing.JLabel priceTitle;
     private javax.swing.JButton uploadImageButton;
     // End of variables declaration//GEN-END:variables
