@@ -19,6 +19,7 @@ public class UpdateMenuForm extends javax.swing.JFrame {
     /**
      * Creates new form UpdateMenuFormm
      */
+    
     public UpdateMenuForm() {
         initComponents();
     }
@@ -120,7 +121,7 @@ public class UpdateMenuForm extends javax.swing.JFrame {
         getContentPane().add(priceTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
         categoryTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        categoryTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        categoryTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Appetizers", "Main Dish", "Dessert", "Beverages" }));
         categoryTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 categoryTextFieldActionPerformed(evt);
@@ -165,11 +166,15 @@ public class UpdateMenuForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void categoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryTextFieldActionPerformed
-        // TODO add your handling code here:
+      
+
+
     }//GEN-LAST:event_categoryTextFieldActionPerformed
 
     private void updateMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMenuButtonActionPerformed
-        // choose image from fileChooser
+    String menuName ="";
+        String description ="";
+        int price = 1;
        
     }//GEN-LAST:event_updateMenuButtonActionPerformed
 
