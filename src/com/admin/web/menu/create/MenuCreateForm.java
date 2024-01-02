@@ -3,11 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.admin.web.menu.create;
-import com.admin.web.menu.WebMenuFrame;
-import java.awt.Image;
-import java.io.File;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
+
 /**
  *
  * @author Admin
@@ -19,23 +15,6 @@ public class MenuCreateForm extends javax.swing.JFrame {
      */
     public MenuCreateForm() {
         initComponents();
-    }
-    private void displayImage(File file) {
-        ImageIcon imageIcon = new ImageIcon(file.getPath());
-        Image image = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(),imageLabel.getHeight(), Image.SCALE_SMOOTH);
-        imageLabel.setIcon(new ImageIcon(image));
-    }
-
-    
-    private void openFileChooser() {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(this);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            displayImage(selectedFile);
-        }
-        
     }
 
     /**
@@ -58,13 +37,14 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        uploadImage = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        imageLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(640, 480));
+        setPreferredSize(new java.awt.Dimension(640, 480));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -115,17 +95,12 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         jComboBox1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jLabel5.setText("Image/Thumbnail");
+        jLabel5.setText("Image");
         jLabel5.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 130, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
         jTextField2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jTextField2.setPreferredSize(new java.awt.Dimension(250, 25));
@@ -136,56 +111,37 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jLabel6.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        uploadImage.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        uploadImage.setText("Upload");
-        uploadImage.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                uploadImageActionPerformed(evt);
-            }
-        });
-        getContentPane().add(uploadImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 270, 160, -1));
+        jPanel2.setBackground(new java.awt.Color(153, 102, 0));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        jButton1.setText("Choose image");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 160, -1));
 
         jButton2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jButton2.setText("Cancel");
         jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
 
         jButton3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jButton3.setText("Create");
         jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
-        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 140, 130));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-       
-    }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        WebMenuFrame web=new WebMenuFrame();
-        web.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void uploadImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImageActionPerformed
-        // choose image from fileChooser
-        openFileChooser();
-    }//GEN-LAST:event_uploadImageActionPerformed
-
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,7 +179,7 @@ public class MenuCreateForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel imageLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
@@ -233,10 +189,10 @@ public class MenuCreateForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
-    private javax.swing.JButton uploadImage;
     // End of variables declaration//GEN-END:variables
 }
