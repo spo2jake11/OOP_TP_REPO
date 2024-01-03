@@ -34,14 +34,14 @@ public class AdminSelectFrame extends javax.swing.JFrame {
         signOutBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(480, 320));
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(252, 222, 176));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Where to go...");
+        jLabel1.setText("Where to go?");
         jLabel1.setPreferredSize(new java.awt.Dimension(150, 26));
 
         reserveSelectBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
@@ -105,25 +105,25 @@ public class AdminSelectFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void signOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_signOutBtnActionPerformed
 
     private void menuSelectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSelectBtnActionPerformed
         this.dispose();
         WebMenuFrame menu = new WebMenuFrame();
         menu.setVisible(true);
     }//GEN-LAST:event_menuSelectBtnActionPerformed
-
-    private void signOutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signOutBtnActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_signOutBtnActionPerformed
 
     /**
      * @param args the command line arguments
