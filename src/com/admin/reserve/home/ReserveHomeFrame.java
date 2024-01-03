@@ -4,6 +4,8 @@
  */
 package com.admin.reserve.home;
 
+import com.admin.select.AdminSelectFrame;
+
 /**
  *
  * @author Admin
@@ -15,6 +17,7 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
      */
     public ReserveHomeFrame() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -29,8 +32,8 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         Backbtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        CreateMenu = new javax.swing.JButton();
+        UpdateMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         MenuTable = new javax.swing.JTable();
 
@@ -66,12 +69,22 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
 
         Backbtn.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
         Backbtn.setText("Back");
+        Backbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackbtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        jButton2.setText("Create Menu");
+        CreateMenu.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
+        CreateMenu.setText("Search Reservation");
+        CreateMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CreateMenuActionPerformed(evt);
+            }
+        });
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        jButton3.setText("Update Menu");
+        UpdateMenu.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
+        UpdateMenu.setText("Check Archives");
 
         MenuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,7 +94,7 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Images", "ID", "Name", "Price"
+                "Name", "ID", "Seat", "Duration"
             }
         ));
         jScrollPane1.setViewportView(MenuTable);
@@ -94,10 +107,10 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addGap(137, 137, 137))
+                .addComponent(CreateMenu)
+                .addGap(63, 63, 63)
+                .addComponent(UpdateMenu)
+                .addGap(92, 92, 92))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -116,8 +129,8 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
                 .addComponent(Backbtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(CreateMenu)
+                    .addComponent(UpdateMenu))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -126,6 +139,17 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CreateMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateMenuActionPerformed
+        
+    }//GEN-LAST:event_CreateMenuActionPerformed
+
+    private void BackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackbtnActionPerformed
+       this.hide();
+       AdminSelectFrame show = new AdminSelectFrame();
+       show.setVisible(true);
+    
+    }//GEN-LAST:event_BackbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,9 +188,9 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Backbtn;
+    private javax.swing.JButton CreateMenu;
     private javax.swing.JTable MenuTable;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton UpdateMenu;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
