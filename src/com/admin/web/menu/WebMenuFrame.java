@@ -4,6 +4,8 @@
  */
 package com.admin.web.menu;
 
+import com.admin.select.AdminSelectFrame;
+
 /**
  *
  * @author Admin
@@ -151,7 +153,9 @@ public class WebMenuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        // TODO add your handling code here:
+        AdminSelectFrame admin=new AdminSelectFrame();
+        this.dispose();
+        admin.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed
 
     /**
