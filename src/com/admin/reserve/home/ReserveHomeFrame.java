@@ -4,6 +4,8 @@
  */
 package com.admin.reserve.home;
 
+import com.admin.select.AdminSelectFrame;
+
 /**
  *
  * @author Admin
@@ -143,8 +145,10 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_CreateMenuActionPerformed
 
     private void BackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackbtnActionPerformed
-       String back = jPanel1.getUIClassID();
-        
+       this.hide();
+       AdminSelectFrame show = new AdminSelectFrame();
+       show.setVisible(true);
+    
     }//GEN-LAST:event_BackbtnActionPerformed
 
     /**
