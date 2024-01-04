@@ -142,8 +142,8 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchReservationActionPerformed
-        this.dispose();
         SearchReserveFrame srf = new SearchReserveFrame();
+        
         srf.setVisible(true);
     }//GEN-LAST:event_SearchReservationActionPerformed
 

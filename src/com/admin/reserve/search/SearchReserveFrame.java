@@ -4,10 +4,7 @@
  */
 package com.admin.reserve.search;
 import com.database.connection.databaseConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -84,39 +81,11 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        String enteredOtp = otpSearchField.getText();
-
-        try {
-            // Use the connection details from databaseConnection class
-            Connection connection = databaseConnection.con;
-
-            // Construct the query
-            String query = "SELECT * FROM reservation_db WHERE reserve_code = ?";
-
-            try (PreparedStatement statement = connection.prepareStatement(query)) {
-                // Set the parameter in the query
-                statement.setString(1, enteredOtp);
-
-                // Execute the query
-                try (ResultSet resultSet = statement.executeQuery()) {
-                    if (resultSet.next()) {
-                        // Reservation with the entered OTP found
-                        String customerName = resultSet.getString("name");
-                        String otp = resultSet.getString("reserve_code");
-                        // You can display information or take further actions
-                        System.out.println("Reservation found!");
-                        System.out.println("Customer Name: " + customerName);
-                        System.out.println("Reservation OTP: " + otp);
-                    } else {
-                        // No reservation with the entered OTP found
-                        System.out.println("No reservation found.");
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            // Close resources...
+        try{
+            int num = Integer.parseInt(otpSearchField.getText());
+            databaseConnection.getSearchResult(otpSearchField.getText());
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Input is not number. Please Try Again.");
         }
     }//GEN-LAST:event_searchBtnActionPerformed
 
