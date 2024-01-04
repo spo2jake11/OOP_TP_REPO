@@ -31,9 +31,9 @@
           <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="CreateMenu" min="-2" max="-2" attributes="0"/>
+              <Component id="SearchReservation" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-              <Component id="UpdateMenu" min="-2" max="-2" attributes="0"/>
+              <Component id="CheckArchives" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="92" max="-2" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -59,8 +59,8 @@
               <Component id="Backbtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="39" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="CreateMenu" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="UpdateMenu" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="SearchReservation" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="CheckArchives" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="502" max="-2" attributes="0"/>
@@ -122,7 +122,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BackbtnActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="CreateMenu">
+    <Component class="javax.swing.JButton" name="SearchReservation">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="25" style="0"/>
@@ -130,10 +130,10 @@
         <Property name="text" type="java.lang.String" value="Search Reservation"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CreateMenuActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchReservationActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="UpdateMenu">
+    <Component class="javax.swing.JButton" name="CheckArchives">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="25" style="0"/>

@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.admin.select;
+import com.admin.reserve.home.ReserveHomeFrame;
 import com.admin.web.menu.WebMenuFrame;
 /**
  *
@@ -48,6 +49,11 @@ public class AdminSelectFrame extends javax.swing.JFrame {
         reserveSelectBtn.setText("Reservation Window");
         reserveSelectBtn.setActionCommand("menuSwitchBtn");
         reserveSelectBtn.setPreferredSize(new java.awt.Dimension(250, 30));
+        reserveSelectBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reserveSelectBtnActionPerformed(evt);
+            }
+        });
 
         menuSelectBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         menuSelectBtn.setText("Menu Window");
@@ -124,6 +130,12 @@ public class AdminSelectFrame extends javax.swing.JFrame {
         WebMenuFrame menu = new WebMenuFrame();
         menu.setVisible(true);
     }//GEN-LAST:event_menuSelectBtnActionPerformed
+
+    private void reserveSelectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reserveSelectBtnActionPerformed
+        this.dispose();
+        ReserveHomeFrame res = new ReserveHomeFrame();
+        res.setVisible(true);
+    }//GEN-LAST:event_reserveSelectBtnActionPerformed
 
     /**
      * @param args the command line arguments
