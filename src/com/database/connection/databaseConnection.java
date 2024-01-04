@@ -23,7 +23,8 @@ public class databaseConnection {
         try{
             con = DriverManager.getConnection(url, user, password);
             if(con != null){
-                JOptionPane.showMessageDialog(null, "Database has been connected");
+                //Commented out the popup
+                //JOptionPane.showMessageDialog(null, "Database has been connected");
             }
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, "Error in the database connection " + e);
