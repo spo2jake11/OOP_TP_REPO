@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.admin.reserve.search;
+import com.database.connection.databaseConnection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -15,6 +20,7 @@ public class SearchReserveFrame extends javax.swing.JFrame {
      */
     public SearchReserveFrame() {
         initComponents();
+        databaseConnection.getCon();
     }
 
     /**
@@ -38,7 +44,6 @@ public class SearchReserveFrame extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 153, 51));
         setForeground(new java.awt.Color(255, 153, 51));
         setMinimumSize(new java.awt.Dimension(640, 480));
-        setPreferredSize(new java.awt.Dimension(320, 240));
         setResizable(false);
         setSize(new java.awt.Dimension(320, 240));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -65,10 +70,10 @@ public class SearchReserveFrame extends javax.swing.JFrame {
         });
         getContentPane().add(otpSearchField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 280, 35));
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 51));
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 640, 130));
 
-        jPanel2.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 640, 100));
 
         jLabel2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -79,7 +84,40 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        // TODO add your handling code here:
+        String enteredOtp = otpSearchField.getText();
+
+        try {
+            // Use the connection details from databaseConnection class
+            Connection connection = databaseConnection.con;
+
+            // Construct the query
+            String query = "SELECT * FROM reservation_db WHERE reserve_code = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(query)) {
+                // Set the parameter in the query
+                statement.setString(1, enteredOtp);
+
+                // Execute the query
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        // Reservation with the entered OTP found
+                        String customerName = resultSet.getString("name");
+                        String otp = resultSet.getString("reserve_code");
+                        // You can display information or take further actions
+                        System.out.println("Reservation found!");
+                        System.out.println("Customer Name: " + customerName);
+                        System.out.println("Reservation OTP: " + otp);
+                    } else {
+                        // No reservation with the entered OTP found
+                        System.out.println("No reservation found.");
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            // Close resources...
+        }
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void otpSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otpSearchFieldActionPerformed
