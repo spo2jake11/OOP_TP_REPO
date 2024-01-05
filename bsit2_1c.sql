@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 01, 2024 at 01:00 PM
+-- Generation Time: Jan 06, 2024 at 12:50 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -37,6 +37,15 @@ CREATE TABLE `menu_db` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `menu_db`
+--
+
+INSERT INTO `menu_db` (`ID`, `name`, `detail`, `category`, `price`, `image`, `created_at`, `updated_at`) VALUES
+(1, '1231', '123123', 'comboBoxChanged', 123, 'Nothing', '2024-01-05 22:11:21', '2024-01-05 22:11:21'),
+(2, '123123', '12312', 'Item 1', 2131, 'Nothing', '2024-01-05 22:13:33', '2024-01-05 22:13:33'),
+(3, 'hotdog', 'malaki at mataba', 'Item 2', 142, 'Nothing', '2024-01-05 22:38:41', '2024-01-05 22:38:41');
 
 -- --------------------------------------------------------
 
@@ -139,7 +148,7 @@ ALTER TABLE `reservation_db`
 -- AUTO_INCREMENT for table `menu_db`
 --
 ALTER TABLE `menu_db`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `reservation_db`

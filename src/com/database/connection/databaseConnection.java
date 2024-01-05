@@ -4,11 +4,13 @@
  */
 package com.database.connection;
 
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JOptionPane;
@@ -71,6 +73,28 @@ public class databaseConnection {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
+        }
+    }
+    
+    public static boolean addMenu(String name, String detail, String category, String price){
+        String query = "INSERT INTO menu_db (name, detail, category, price, image, created_at, updated_at) VALUES(?, ?, ?, ?, ?, ?, ?)";
+        getCon();
+        try(PreparedStatement prep = con.prepareStatement(query)){
+            prep.setString(1, name);
+            prep.setString(2, detail);
+            prep.setString(3, category);
+            prep.setInt(4, Integer.parseInt(price));
+            prep.setString(5, "Nothing");
+            
+            Timestamp time = new Timestamp(new Date().getTime());
+            prep.setTimestamp(6, time);
+            prep.setTimestamp(7, time);
+            
+            int result = prep.executeUpdate();
+            return result > 0;
+        }catch(SQLException e){
+            
+            return false;
         }
     }
 }

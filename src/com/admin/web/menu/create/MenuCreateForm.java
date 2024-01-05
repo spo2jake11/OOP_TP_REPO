@@ -4,6 +4,9 @@
  */
 package com.admin.web.menu.create;
 
+import com.database.connection.databaseConnection;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -28,14 +31,14 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        menuName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        menuDetail = new javax.swing.JTextArea();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        menuCategory = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        menuPrice = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
@@ -70,9 +73,9 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jTextField1.setPreferredSize(new java.awt.Dimension(250, 25));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+        menuName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuName.setPreferredSize(new java.awt.Dimension(250, 25));
+        getContentPane().add(menuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel3.setText("Description");
@@ -81,10 +84,10 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        jTextArea1.setColumns(15);
-        jTextArea1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jTextArea1.setRows(4);
-        jScrollPane1.setViewportView(jTextArea1);
+        menuDetail.setColumns(15);
+        menuDetail.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuDetail.setRows(4);
+        jScrollPane1.setViewportView(menuDetail);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 260, 100));
 
@@ -93,18 +96,18 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jLabel4.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
-        jComboBox1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
+        menuCategory.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(menuCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel5.setText("Image");
         jLabel5.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
 
-        jTextField2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jTextField2.setPreferredSize(new java.awt.Dimension(250, 25));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
+        menuPrice.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuPrice.setPreferredSize(new java.awt.Dimension(250, 25));
+        getContentPane().add(menuPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 300, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jLabel6.setText("Price");
@@ -138,10 +141,30 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         jButton3.setText("Create");
         jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try{
+            Integer.parseInt(menuPrice.getText());
+            boolean status = databaseConnection.addMenu(menuName.getText(), menuDetail.getText(), (String) menuCategory.getSelectedItem(), menuPrice.getText());
+            if(status){
+                JOptionPane.showMessageDialog(null, "Menu Created!!!");
+            }else{
+                JOptionPane.showMessageDialog(null, "Menu not created..");
+            }
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Inputted value in price is not integer.");
+        }
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,7 +205,6 @@ public class MenuCreateForm extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -191,8 +213,9 @@ public class MenuCreateForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JComboBox<String> menuCategory;
+    private javax.swing.JTextArea menuDetail;
+    private javax.swing.JTextField menuName;
+    private javax.swing.JTextField menuPrice;
     // End of variables declaration//GEN-END:variables
 }
