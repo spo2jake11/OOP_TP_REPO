@@ -6,7 +6,9 @@ package com.admin.web.menu;
 
 import com.admin.select.AdminSelectFrame;
 import com.admin.web.menu.create.MenuCreateForm;
-
+import java.sql.*;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Admin
@@ -16,8 +18,37 @@ public class WebMenuFrame extends javax.swing.JFrame {
     /**
      * Creates new form WebMenuFrame
      */
+    Connection con;
     public WebMenuFrame() {
         initComponents();
+        
+        String url = "jdbc:mysql://localhost:3306/bsit2.1c";
+        String user = "root";
+        String pass = "";
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        try {
+            con = DriverManager.getConnection(url, user, pass); 
+        } catch (Exception ex) {
+            System.out.println("Error" + ex.getMessage());
+        }
+        String sql = "SELECT * FROM menu_db";
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel)menuTable.getModel();
+            ResultSetMetaData rmsd = rs.getMetaData();
+            int cols = rmsd.getColumnCount();
+            
+
+            while(rs.next()){
+                model.addRow(new String[] {rs.getString(6),rs.getString(1),rs.getString(2), rs.getString(5),});
+            }
+            for(int x=0;x<cols;x++){
+         menuTable.getColumnModel().getColumn(x).setCellRenderer( centerRenderer );
+        }
+        } catch (Exception ex) {
+            System.out.println("Error" + ex.getMessage());
+    }
     }
 
     /**
