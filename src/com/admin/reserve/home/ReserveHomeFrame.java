@@ -34,7 +34,7 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         Backbtn = new javax.swing.JButton();
         SearchReservation = new javax.swing.JButton();
-        CheckArchives = new javax.swing.JButton();
+        ArchiveReserve = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         MenuTable = new javax.swing.JTable();
 
@@ -84,8 +84,8 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
             }
         });
 
-        CheckArchives.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        CheckArchives.setText("Check Archives");
+        ArchiveReserve.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
+        ArchiveReserve.setText("Archive Reserve");
 
         MenuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -109,9 +109,9 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(SearchReservation)
-                .addGap(63, 63, 63)
-                .addComponent(CheckArchives)
-                .addGap(92, 92, 92))
+                .addGap(54, 54, 54)
+                .addComponent(ArchiveReserve)
+                .addGap(93, 93, 93))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -131,7 +131,7 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchReservation)
-                    .addComponent(CheckArchives))
+                    .addComponent(ArchiveReserve))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
@@ -142,6 +142,7 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchReservationActionPerformed
+        this.dispose();
         SearchReserveFrame srf = new SearchReserveFrame();
         
         srf.setVisible(true);
@@ -191,8 +192,8 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ArchiveReserve;
     private javax.swing.JButton Backbtn;
-    private javax.swing.JButton CheckArchives;
     private javax.swing.JTable MenuTable;
     private javax.swing.JButton SearchReservation;
     private javax.swing.JPanel jPanel1;
