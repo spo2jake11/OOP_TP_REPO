@@ -4,9 +4,7 @@
  */
 package com.database.connection;
 
-import java.awt.Image;
-import java.awt.Toolkit;
-import java.io.File;
+import com.admin.reserve.result.SearchResultFrame;
 import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,20 +14,18 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author Admin
  */
 public class databaseConnection {
+    static Map<String, String> results = new HashMap<>();
     public static Connection con = null;
     
     public static void getCon(){
-        String url = "jdbc:mysql://localhost:3306/bsit2.1c";
+        String url = "jdbc:mysql://localhost:3306/bsit2_1c";
         String user = "root";
         String password = "";
         
@@ -61,7 +57,6 @@ public class databaseConnection {
                     // Execute the query
                     if (resultSet.next()) {
                         // Reservation with the entered OTP found
-                        Map<String, String> results = new HashMap<>();
                         results.put("name", resultSet.getString("name"));
                         results.put("email", resultSet.getString("email"));
                         results.put("reserveDate", resultSet.getString("reserve_date"));
@@ -70,6 +65,10 @@ public class databaseConnection {
                         results.put("payment", resultSet.getString("payment_mode"));
                         results.put("otp", resultSet.getString("reserve_code"));
                         results.put("status", resultSet.getString("status"));
+
+                        SearchResultFrame srf = new SearchResultFrame();
+                        srf.setVisible(true);
+                        
                         System.out.println(results.toString());
                     } else {
                         // No reservation with the entered OTP found
@@ -81,8 +80,10 @@ public class databaseConnection {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    
-    public static boolean addMenu(String name, String detail, String category, String price, String image){
+    public Map<String, String> getResult(){
+        return results;
+    }
+    public static boolean addMenu(String name, String detail, String category, String price){
         String query = "INSERT INTO menu_db (name, detail, category, price, image, created_at, updated_at) VALUES(?, ?, ?, ?, ?, ?, ?)";
         getCon();
         try(PreparedStatement prep = con.prepareStatement(query)){
@@ -90,8 +91,7 @@ public class databaseConnection {
             prep.setString(2, detail);
             prep.setString(3, category);
             prep.setInt(4, Integer.parseInt(price));
-           
-            prep.setString(5,image);
+            prep.setString(5, "Nothing");
             
             Timestamp time = new Timestamp(new Date().getTime());
             prep.setTimestamp(6, time);
@@ -100,29 +100,8 @@ public class databaseConnection {
             int result = prep.executeUpdate();
             return result > 0;
         }catch(SQLException e){
-            
+            JOptionPane.showMessageDialog(null, e);
             return false;
         }
     }
-    
-    public static File imageChooser(){
-        JFileChooser file =new JFileChooser(); 
-        file.setCurrentDirectory(new File("."));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images","png","jpg","jpeg");
-        file.addChoosableFileFilter(filter);
-        try{
-            
-            int a=file.showSaveDialog(null);
-            if(a==JFileChooser.APPROVE_OPTION){
-                File select = file.getSelectedFile();
-            }
-        }catch(NullPointerException e){
-            JOptionPane.showMessageDialog(null, e);
-        }
-        return file.getSelectedFile();
-        
-    }
-    
-    
-   
 }
