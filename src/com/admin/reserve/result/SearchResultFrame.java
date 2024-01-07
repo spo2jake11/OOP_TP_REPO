@@ -6,8 +6,12 @@ package com.admin.reserve.result;
 
 import com.admin.reserve.search.SearchReserveFrame;
 import com.database.connection.databaseConnection;
+import static com.database.connection.databaseConnection.con;
+import java.sql.Connection;
 import java.util.HashMap;
 import java.util.Map;
+import java.sql.SQLException;
+import java.sql.PreparedStatement;
 
 /**
  *
@@ -199,6 +203,11 @@ public class SearchResultFrame extends javax.swing.JFrame {
 
         Cancelledbtn.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Cancelledbtn.setText("Cancelled");
+        Cancelledbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelledbtnActionPerformed(evt);
+            }
+        });
         getContentPane().add(Cancelledbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 530, 120, 40));
 
         pack();
@@ -216,9 +225,15 @@ public class SearchResultFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_resNameActionPerformed
 
     private void OnTimebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnTimebtnActionPerformed
-       
+       updateStatusInDatabase("On Time");
+        System.out.println("On Time");
        
     }//GEN-LAST:event_OnTimebtnActionPerformed
+
+    private void CancelledbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelledbtnActionPerformed
+      updateStatusInDatabase("Cancelled");
+        System.out.println("Cancelled");
+    }//GEN-LAST:event_CancelledbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -281,4 +296,31 @@ public class SearchResultFrame extends javax.swing.JFrame {
     private javax.swing.JTextField resStatus;
     private javax.swing.JTextField resTime;
     // End of variables declaration//GEN-END:variables
+
+    //Update Status from Java to Database
+    private void updateStatusInDatabase(String newStatus) {
+        databaseConnection.getCon();
+        
+    try {
+      //Query should update status, referrence code, and time
+      String updateQuery = "UPDATE reservation_db SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE reserve_code = ?";
+
+       try (PreparedStatement tmnt = con.prepareStatement(updateQuery)) { //This took me 4 hours
+            tmnt.setString(1, newStatus);
+            tmnt.setString(2 , resCode.getText());
+
+            int rowsAffected = tmnt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Status updated successfully.");
+            } else {
+                System.out.println("Failed to update status.");
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+        
+    }
 }
