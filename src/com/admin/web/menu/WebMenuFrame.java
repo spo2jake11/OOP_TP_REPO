@@ -6,15 +6,6 @@ package com.admin.web.menu;
 
 import com.admin.select.AdminSelectFrame;
 import com.admin.web.menu.create.MenuCreateForm;
-import com.database.connection.databaseConnection;
-import static com.database.connection.databaseConnection.con;
-import com.mysql.cj.jdbc.result.ResultSetMetaData;
-import java.awt.Font;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,26 +18,6 @@ public class WebMenuFrame extends javax.swing.JFrame {
      */
     public WebMenuFrame() {
         initComponents();
-        menuTable.setFont(new Font("Verdana", Font.PLAIN, 18));
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        databaseConnection.getCon();
-        String sql = "SELECT * FROM menu_db";
-        try {
-            PreparedStatement pst = con.prepareStatement(sql);
-            ResultSet rs = pst.executeQuery();
-            DefaultTableModel model = (DefaultTableModel) menuTable.getModel();
-            ResultSetMetaData rmsd = (ResultSetMetaData) rs.getMetaData();
-            int cols = rmsd.getColumnCount();
-            while (rs.next()) {
-                int x = 0;
-                System.out.println(rs);
-                model.addRow(new String[]{rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7),});
-                menuTable.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
-                x++;
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-        }
     }
 
     /**
@@ -136,14 +107,17 @@ public class WebMenuFrame extends javax.swing.JFrame {
         menuTable.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         menuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Detail", "Price", "Date Created"
+                "Image", "ID", "Name", "Price"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false, false
@@ -161,13 +135,13 @@ public class WebMenuFrame extends javax.swing.JFrame {
         jScrollPane1.setViewportView(menuTable);
         if (menuTable.getColumnModel().getColumnCount() > 0) {
             menuTable.getColumnModel().getColumn(0).setResizable(false);
-            menuTable.getColumnModel().getColumn(0).setPreferredWidth(100);
+            menuTable.getColumnModel().getColumn(0).setPreferredWidth(10);
             menuTable.getColumnModel().getColumn(1).setResizable(false);
-            menuTable.getColumnModel().getColumn(1).setPreferredWidth(450);
+            menuTable.getColumnModel().getColumn(1).setPreferredWidth(10);
             menuTable.getColumnModel().getColumn(2).setResizable(false);
-            menuTable.getColumnModel().getColumn(2).setPreferredWidth(10);
+            menuTable.getColumnModel().getColumn(2).setPreferredWidth(500);
             menuTable.getColumnModel().getColumn(3).setResizable(false);
-            menuTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+            menuTable.getColumnModel().getColumn(3).setPreferredWidth(10);
         }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 1200, 390));
@@ -181,7 +155,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        AdminSelectFrame admin = new AdminSelectFrame();
+        AdminSelectFrame admin=new AdminSelectFrame();
         this.dispose();
         admin.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed
@@ -193,7 +167,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

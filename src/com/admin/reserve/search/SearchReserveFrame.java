@@ -149,6 +149,6 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private String getSearchResult() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
