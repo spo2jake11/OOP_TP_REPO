@@ -4,6 +4,9 @@
  */
 package com.database.connection;
 
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
 import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -13,7 +16,10 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -76,7 +82,7 @@ public class databaseConnection {
         }
     }
     
-    public static boolean addMenu(String name, String detail, String category, String price){
+    public static boolean addMenu(String name, String detail, String category, String price, String image){
         String query = "INSERT INTO menu_db (name, detail, category, price, image, created_at, updated_at) VALUES(?, ?, ?, ?, ?, ?, ?)";
         getCon();
         try(PreparedStatement prep = con.prepareStatement(query)){
@@ -84,7 +90,8 @@ public class databaseConnection {
             prep.setString(2, detail);
             prep.setString(3, category);
             prep.setInt(4, Integer.parseInt(price));
-            prep.setString(5, "Nothing");
+           
+            prep.setString(5,image);
             
             Timestamp time = new Timestamp(new Date().getTime());
             prep.setTimestamp(6, time);
@@ -97,4 +104,25 @@ public class databaseConnection {
             return false;
         }
     }
+    
+    public static File imageChooser(){
+        JFileChooser file =new JFileChooser(); 
+        file.setCurrentDirectory(new File("."));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Images","png","jpg","jpeg");
+        file.addChoosableFileFilter(filter);
+        try{
+            
+            int a=file.showSaveDialog(null);
+            if(a==JFileChooser.APPROVE_OPTION){
+                File select = file.getSelectedFile();
+            }
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return file.getSelectedFile();
+        
+    }
+    
+    
+   
 }
