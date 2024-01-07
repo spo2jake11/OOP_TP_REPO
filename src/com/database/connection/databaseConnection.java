@@ -134,7 +134,7 @@ public class databaseConnection {
             // Use the connection details from databaseConnection class
             getCon();
 
-            String folderPath = "C:\\Users\\Admin\\Documents\\Github Repositories\\GithubRepo\\OOP_TP_REPO\\Archived Reservations";
+            String folderPath = "C:\\OOP_TP_REPO\\files";
 
             // Construct the query for fetching archived reservations
             String query = "SELECT * FROM reservation_db";  // Replace 'your_archived_table' with your actual table name
@@ -156,16 +156,16 @@ public class databaseConnection {
                     while (resultSet.next()) {
                         // Process each archived reservation
                         Map<String, String> results = new HashMap<>();
-                        results.put("name", resultSet.getString("name"));
-                        results.put("email", resultSet.getString("email"));
-                        results.put("seat_taken", resultSet.getString("seat_taken"));
-                        results.put("reserve_date", resultSet.getString("reserve_date"));
-                        results.put("reserve_time", resultSet.getString("reserve_time"));
-                        results.put("status", resultSet.getString("status"));
-                        results.put("pament_mode", resultSet.getString("payment_mode"));
-                        results.put("reserve_code", resultSet.getString("reserve_code"));
-                        results.put("created_at", resultSet.getString("created_at"));
-                        results.put("updated_at", resultSet.getString("updated_at"));
+                        results.put("name", resultSet.getString("name") + "\t");
+                        results.put("email", resultSet.getString("email") + "\t");
+                        results.put("seat_taken", resultSet.getString("seat_taken") + "\t");
+                        results.put("reserve_date", resultSet.getString("reserve_date") + "\t");
+                        results.put("reserve_time", resultSet.getString("reserve_time") + "\t");
+                        results.put("status", resultSet.getString("status") + "\t");
+                        results.put("payment_mode", resultSet.getString("payment_mode") + "\t");
+                        results.put("reserve_code", resultSet.getString("reserve_code") + "\t");
+                        results.put("created_at", resultSet.getString("created_at") + "\t");
+                        results.put("updated_at", resultSet.getString("updated_at") + "\t");
                         printWriter.println(results.toString());
                     }
 
