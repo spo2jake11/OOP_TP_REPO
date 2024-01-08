@@ -5,17 +5,11 @@
 package com.admin.web.menu.create;
 
 import com.database.connection.databaseConnection;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -29,31 +23,7 @@ public class MenuCreateForm extends javax.swing.JFrame {
     public MenuCreateForm() {
         initComponents();
     }
-    
-    public void Connect(){
-        databaseConnection.getCon();
-        
-    }
 
-    public ImageIcon setIcon(String m,byte[]image){
-        if(m!=null){
-            myimage=new ImageIcon(imagepath);
-            
-        }else{
-        myimage = new ImageIcon(image);
-        
-        }
-        
-      Image img1=myimage.getImage();
-      Image img2=img1.getScaledInstance(WIDTH, HEIGHT, Image.SCALE_SMOOTH);
-      ImageIcon i=new ImageIcon(img2);
-      
-      return i;
-    }
-    byte[]image;
-    String imagepath="";
-    ImageIcon myimage;
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,9 +44,9 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         menuPrice = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        chooseimagebtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        imageChooser = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
         menuImage = new javax.swing.JTextField();
         imageOut = new javax.swing.JLabel();
 
@@ -154,34 +124,34 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jLabel6.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        chooseimagebtn.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        chooseimagebtn.setText("Choose image");
-        chooseimagebtn.addActionListener(new java.awt.event.ActionListener() {
+        imageChooser.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        imageChooser.setText("Choose image");
+        imageChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chooseimagebtnActionPerformed(evt);
+                imageChooserActionPerformed(evt);
             }
         });
-        getContentPane().add(chooseimagebtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, 160, -1));
+        getContentPane().add(imageChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, 160, -1));
 
-        jButton2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton2.setText("Cancel");
-        jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        backBtn.setText("Cancel");
+        backBtn.setPreferredSize(new java.awt.Dimension(150, 30));
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
 
-        jButton3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton3.setText("Create");
-        jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        createBtn.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        createBtn.setText("Create");
+        createBtn.setPreferredSize(new java.awt.Dimension(150, 30));
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                createBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
+        getContentPane().add(createBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
 
         menuImage.setEditable(false);
         menuImage.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -196,44 +166,44 @@ public class MenuCreateForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try{
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        try {
             Integer.parseInt(menuPrice.getText());
             boolean status = databaseConnection.addMenu(menuName.getText(), menuDetail.getText(), (String) menuCategory.getSelectedItem(), menuPrice.getText(), menuImage.getText());
-            if(status){
+            if (status) {
                 JOptionPane.showMessageDialog(null, "Menu Created!!!");
                 this.dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Menu not created..");
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Inputted value in price is not integer.");
         }
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+
+    }//GEN-LAST:event_createBtnActionPerformed
 
     private void menuCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoryActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_menuCategoryActionPerformed
 
-    private void chooseimagebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseimagebtnActionPerformed
+    private void imageChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageChooserActionPerformed
         File file = databaseConnection.imageChooser();
         menuImage.setText(file.toString());
-        try{
+        try {
             imageOut.setIcon(new ImageIcon(ImageIO.read(file)));
-        }catch(IOException e){
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
-    }//GEN-LAST:event_chooseimagebtnActionPerformed
+
+    }//GEN-LAST:event_imageChooserActionPerformed
 
     private void menuImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuImageActionPerformed
-           
+
     }//GEN-LAST:event_menuImageActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,7 +212,7 @@ public class MenuCreateForm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -271,10 +241,10 @@ public class MenuCreateForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton chooseimagebtn;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton createBtn;
+    private javax.swing.JButton imageChooser;
     private javax.swing.JLabel imageOut;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

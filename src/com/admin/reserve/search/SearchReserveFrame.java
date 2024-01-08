@@ -3,8 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.admin.reserve.search;
+import com.admin.reserve.result.SearchResultFrame;
 import com.database.connection.databaseConnection;
 import javax.swing.JOptionPane;
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 /**
  *
@@ -19,7 +26,8 @@ public class SearchReserveFrame extends javax.swing.JFrame {
         initComponents();
         databaseConnection.getCon();
     }
-
+    private void ResultActionPerformed(java.awt.event.ActionEvent evt) {
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -82,11 +90,14 @@ public class SearchReserveFrame extends javax.swing.JFrame {
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         try{
-            int num = Integer.parseInt(otpSearchField.getText());
+            Integer.parseInt(otpSearchField.getText());
             databaseConnection.getSearchResult(otpSearchField.getText());
+            this.dispose();
         }catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Input is not number. Please Try Again.");
         }
+        
+        
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void otpSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otpSearchFieldActionPerformed
@@ -136,4 +147,8 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     private javax.swing.JTextField otpSearchField;
     private javax.swing.JButton searchBtn;
     // End of variables declaration//GEN-END:variables
+
+    private String getSearchResult() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
