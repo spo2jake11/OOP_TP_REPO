@@ -5,9 +5,11 @@
 package com.database.connection;
 
 import com.admin.reserve.result.SearchResultFrame;
+import com.admin.web.menu.WebMenuFrame;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.io.BufferedWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -132,6 +134,57 @@ public class databaseConnection {
         return file.getSelectedFile();
 
     }
+    // Method to fetch archived menu
+    public static void fetchArchivedMenu() {
+        try {
+            // Use the connection details from databaseConnection class
+            getCon();
+
+            String folderPath = "C:\\OOP_TP_REPO\\files";
+
+            // Construct the query for fetching archived reservations
+            String query = "SELECT * FROM menu_db";  // Replace 'your_archived_table' with your actual table name
+
+            try (PreparedStatement statement = con.prepareStatement(query); ResultSet resultSet = statement.executeQuery()) {
+
+                // Create the folder if it doesn't exist
+                File folder = new File(folderPath);
+                if (!folder.exists()) {
+                    folder.mkdirs();  // This creates both the folder and any necessary parent folders
+                }
+
+                String filePath = folderPath + File.separator + "archived_menu.txt";
+
+                // Create a FileWriter to write to a text file
+                try (FileWriter fileWriter = new FileWriter(filePath); BufferedWriter bw = new BufferedWriter(fileWriter)) {
+ fileWriter.write("ID\tname\tdetail\tcategory\tprice\timage                                         \tcreated_at\tupdated_at\n");
+                    // Execute the query
+                    while (resultSet.next()) {
+                        // Process each archived menu
+                       
+			
+			String data = resultSet.getInt("ID") + "\t" +
+                                  resultSet.getString("name") + "\t" +
+                                  resultSet.getString("detail") + "\t" +
+                                  resultSet.getString("category") + "\t" +
+                                  resultSet.getInt("price") + "\t" +
+                                  resultSet.getString("image") + "\t" +
+                                  resultSet.getString("created_at") + "\t" +
+                                  resultSet.getString("updated_at") + "\n";
+
+                    fileWriter.write(data);
+                    }
+                    fileWriter.close();
+                    JOptionPane.showMessageDialog(null, "Archived Menu exported to archived_menu.txt");
+                }
+            
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    
+    
+    }
 
     // Method to fetch archived reservations
     public static void fetchArchivedReservations() {
@@ -156,24 +209,24 @@ public class databaseConnection {
 
                 // Create a FileWriter to write to a text file
                 try (FileWriter fileWriter = new FileWriter(filePath); PrintWriter printWriter = new PrintWriter(fileWriter)) {
-
-                    // Execute the query
-                    while (resultSet.next()) {
-                        // Process each archived reservation
-                        Map<String, String> results = new HashMap<>();
-                        results.put("name", resultSet.getString("name"));
-                        results.put("email", resultSet.getString("email"));
-                        results.put("seat_taken", resultSet.getString("seat_taken"));
-                        results.put("reserve_date", resultSet.getString("reserve_date"));
-                        results.put("reserve_time", resultSet.getString("reserve_time"));
-                        results.put("status", resultSet.getString("status"));
-                        results.put("pament_mode", resultSet.getString("payment_mode"));
-                        results.put("reserve_code", resultSet.getString("reserve_code"));
-                        results.put("created_at", resultSet.getString("created_at"));
-                        results.put("updated_at", resultSet.getString("updated_at"));
-                        printWriter.println(results.toString());
+// Writing header
+  fileWriter.write("ID\tname                \temail                      \tseat_taken\treserve_date         \treserve_time \tstatus   \tpayment_mode \treserve_code \tcreated_at             \tupdated_at\n");
+// Execute the query
+while (resultSet.next()) {
+    // Process each archived reservation
+    String data = resultSet.getInt("ID") + "\t" +
+                  resultSet.getString("name") + "           \t" +
+                  resultSet.getString("email") + "           \t" +
+                  resultSet.getInt("seat_taken") + "\t" +
+                  resultSet.getString("reserve_date") + "\t" +
+                  resultSet.getString("reserve_time") + "\t" +
+                  resultSet.getString("status") + "      \t" +
+                  resultSet.getString("payment_mode") + "        \t" +
+                  resultSet.getInt("reserve_code") + "\t" +
+                  resultSet.getString("created_at") + "\t" +
+                  resultSet.getString("updated_at") + "\n";  fileWriter.write(data);
                     }
-
+                        fileWriter.close();
                     JOptionPane.showMessageDialog(null, "Archived Reservations exported to archived_reservations.txt");
                 }
             }
@@ -207,4 +260,5 @@ public class databaseConnection {
         }
 
     }
+    
 }

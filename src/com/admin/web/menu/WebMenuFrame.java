@@ -66,6 +66,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menuTable = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -88,7 +89,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
         updateBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         updateBtn.setText("Update Menu");
         updateBtn.setPreferredSize(new java.awt.Dimension(200, 35));
-        getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 170, 200, 35));
+        getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 170, 200, 35));
 
         createBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         createBtn.setText("Create Menu");
@@ -98,7 +99,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
                 createBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(createBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, 200, 35));
+        getContentPane().add(createBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 200, 35));
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(0, 150));
@@ -173,6 +174,15 @@ public class WebMenuFrame extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 1200, 390));
 
+        jButton1.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        jButton1.setText("Archive Menu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 170, 200, 35));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -186,6 +196,11 @@ public class WebMenuFrame extends javax.swing.JFrame {
         this.dispose();
         admin.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+databaseConnection.fetchArchivedMenu();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,6 +239,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
