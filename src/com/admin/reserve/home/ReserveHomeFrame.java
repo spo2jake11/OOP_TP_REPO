@@ -6,6 +6,7 @@ package com.admin.reserve.home;
 
 import com.admin.reserve.search.SearchReserveFrame;
 import com.admin.select.AdminSelectFrame;
+import com.database.connection.databaseConnection;
 
 /**
  *
@@ -85,7 +86,12 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
         });
 
         ArchiveReserve.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
-        ArchiveReserve.setText("Archive Reserve");
+        ArchiveReserve.setText("Archived Reservations");
+        ArchiveReserve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ArchiveReserveActionPerformed(evt);
+            }
+        });
 
         MenuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,21 +112,21 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(82, 82, 82)
+                .addComponent(Backbtn)
+                .addContainerGap(1117, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SearchReservation)
-                .addGap(54, 54, 54)
-                .addComponent(ArchiveReserve)
-                .addGap(93, 93, 93))
-            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(Backbtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(SearchReservation)
+                        .addGap(28, 28, 28)
+                        .addComponent(ArchiveReserve)
+                        .addGap(45, 45, 45))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +138,9 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(SearchReservation)
                     .addComponent(ArchiveReserve))
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(38, 38, 38)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -155,6 +161,11 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
        show.setVisible(true);
     
     }//GEN-LAST:event_BackbtnActionPerformed
+
+    private void ArchiveReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArchiveReserveActionPerformed
+        ReserveHomeFrame rhf = new ReserveHomeFrame();
+        databaseConnection.fetchArchivedReservations();
+    }//GEN-LAST:event_ArchiveReserveActionPerformed
 
     /**
      * @param args the command line arguments

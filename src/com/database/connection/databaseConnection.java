@@ -5,6 +5,9 @@
 package com.database.connection;
 
 import com.admin.reserve.result.SearchResultFrame;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.io.File;
 import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,8 +17,12 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 /**
  *
  * @author Admin
@@ -25,7 +32,7 @@ public class databaseConnection {
     public static Connection con = null;
     
     public static void getCon(){
-        String url = "jdbc:mysql://localhost:3306/bsit2_1c";
+        String url = "jdbc:mysql://localhost:3306/bsit2.1c";
         String user = "root";
         String password = "";
         
@@ -102,6 +109,56 @@ public class databaseConnection {
         }catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
             return false;
+        }
+    }
+    // Method to fetch archived reservations
+    public static void fetchArchivedReservations() {
+        try {
+            // Use the connection details from databaseConnection class
+            getCon();
+
+            String folderPath = "C:\\Users\\Admin\\Documents\\Github Repositories\\GithubRepo\\OOP_TP_REPO\\Archived Reservations";
+
+            // Construct the query for fetching archived reservations
+            String query = "SELECT * FROM reservation_db";  // Replace 'your_archived_table' with your actual table name
+
+            try (PreparedStatement statement = con.prepareStatement(query);
+                 ResultSet resultSet = statement.executeQuery()) {
+
+                // Create the folder if it doesn't exist
+                File folder = new File(folderPath);
+                if (!folder.exists()) {
+                folder.mkdirs();  // This creates both the folder and any necessary parent folders
+                }
+
+                String filePath = folderPath + File.separator + "archived_reservations.txt";
+
+                // Create a FileWriter to write to a text file
+                try (FileWriter fileWriter = new FileWriter(filePath);
+                     PrintWriter printWriter = new PrintWriter(fileWriter)) {
+
+                    // Execute the query
+                    while (resultSet.next()) {
+                        // Process each archived reservation
+                        Map<String, String> results = new HashMap<>();
+                        results.put("name", resultSet.getString("name"));
+                        results.put("email", resultSet.getString("email"));
+                        results.put("seat_taken", resultSet.getString("seat_taken"));
+                        results.put("reserve_date", resultSet.getString("reserve_date"));
+                        results.put("reserve_time", resultSet.getString("reserve_time"));
+                        results.put("status", resultSet.getString("status"));
+                        results.put("pament_mode", resultSet.getString("payment_mode"));
+                        results.put("reserve_code", resultSet.getString("reserve_code"));
+                        results.put("created_at",resultSet.getString("created_at"));
+                        results.put("updated_at", resultSet.getString("updated_at"));
+                        printWriter.println(results.toString());
+                    }
+
+                    JOptionPane.showMessageDialog(null, "Archived Reservations exported to archived_reservations.txt");
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
     }
 }
