@@ -6,26 +6,22 @@ package com.admin.reserve.result;
 
 import com.admin.reserve.search.SearchReserveFrame;
 import com.database.connection.databaseConnection;
-import static com.database.connection.databaseConnection.con;
-import java.sql.Connection;
-import java.util.HashMap;
 import java.util.Map;
-import java.sql.SQLException;
-import java.sql.PreparedStatement;
 
 /**
  *
  * @author Rocher
  */
 public class SearchResultFrame extends javax.swing.JFrame {
+
     private String searchData;
-    
-    
+
     /**
      * Creates new form SearchResultFrame
      */
     public SearchResultFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         databaseConnection db = new databaseConnection();
         Map<String, String> map = db.getResult();
         resName.setText(map.get("name"));
@@ -37,7 +33,6 @@ public class SearchResultFrame extends javax.swing.JFrame {
         resStatus.setText(map.get("status"));
         resCode.setText(map.get("otp"));
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -214,10 +209,10 @@ public class SearchResultFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackbtnActionPerformed
-       SearchReserveFrame srf = new SearchReserveFrame();
-       srf.setVisible(true);
+        SearchReserveFrame srf = new SearchReserveFrame();
+        srf.setVisible(true);
         this.dispose();
-       
+
     }//GEN-LAST:event_BackbtnActionPerformed
 
     private void resNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resNameActionPerformed
@@ -225,14 +220,14 @@ public class SearchResultFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_resNameActionPerformed
 
     private void OnTimebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OnTimebtnActionPerformed
-       updateStatusInDatabase("On Time");
-        System.out.println("On Time");
-       
+        databaseConnection.updateStatusInDatabase("On Time", resCode.getText());
+        this.dispose();
+
     }//GEN-LAST:event_OnTimebtnActionPerformed
 
     private void CancelledbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelledbtnActionPerformed
-      updateStatusInDatabase("Cancelled");
-        System.out.println("Cancelled");
+        databaseConnection.updateStatusInDatabase("Cancelled", resCode.getText());
+        this.dispose();
     }//GEN-LAST:event_CancelledbtnActionPerformed
 
     /**
@@ -242,7 +237,7 @@ public class SearchResultFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -298,29 +293,4 @@ public class SearchResultFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     //Update Status from Java to Database
-    private void updateStatusInDatabase(String newStatus) {
-        databaseConnection.getCon();
-        
-    try {
-      //Query should update status, referrence code, and time
-      String updateQuery = "UPDATE reservation_db SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE reserve_code = ?";
-
-       try (PreparedStatement tmnt = con.prepareStatement(updateQuery)) { //This took me 4 hours
-            tmnt.setString(1, newStatus);
-            tmnt.setString(2 , resCode.getText());
-
-            int rowsAffected = tmnt.executeUpdate();
-
-            if (rowsAffected > 0) {
-                System.out.println("Status updated successfully.");
-            } else {
-                System.out.println("Failed to update status.");
-            }
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-        
-    }
 }

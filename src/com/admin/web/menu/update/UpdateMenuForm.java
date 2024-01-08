@@ -19,17 +19,17 @@ public class UpdateMenuForm extends javax.swing.JFrame {
     /**
      * Creates new form UpdateMenuFormm
      */
-    
     public UpdateMenuForm() {
         initComponents();
+        setLocationRelativeTo(null);
     }
-     private void displayImage(File file) {
+
+    private void displayImage(File file) {
         ImageIcon imageIcon = new ImageIcon(file.getPath());
-        Image image = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(),imageLabel.getHeight(), Image.SCALE_SMOOTH);
+        Image image = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
         imageLabel.setIcon(new ImageIcon(image));
     }
 
-    
     private void openFileChooser() {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(this);
@@ -38,7 +38,7 @@ public class UpdateMenuForm extends javax.swing.JFrame {
             File selectedFile = fileChooser.getSelectedFile();
             displayImage(selectedFile);
         }
-        
+
     }
 
     /**
@@ -166,25 +166,23 @@ public class UpdateMenuForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void categoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryTextFieldActionPerformed
-      
-
 
     }//GEN-LAST:event_categoryTextFieldActionPerformed
 
     private void updateMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMenuButtonActionPerformed
-    String menuName ="";
-        String description ="";
+        String menuName = "";
+        String description = "";
         int price = 1;
-       
+
     }//GEN-LAST:event_updateMenuButtonActionPerformed
 
     private void cancelMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelMenuButtonActionPerformed
-       WebMenuFrame webmenuframe= new WebMenuFrame();
-       webmenuframe.setVisible(true);
+        WebMenuFrame webmenuframe = new WebMenuFrame();
+        webmenuframe.setVisible(true);
     }//GEN-LAST:event_cancelMenuButtonActionPerformed
 
     private void uploadImage2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImage2ActionPerformed
-        
+
         openFileChooser();
     }//GEN-LAST:event_uploadImage2ActionPerformed
 
@@ -195,7 +193,7 @@ public class UpdateMenuForm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

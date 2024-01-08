@@ -3,15 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.admin.reserve.search;
-import com.admin.reserve.result.SearchResultFrame;
+
 import com.database.connection.databaseConnection;
 import javax.swing.JOptionPane;
-import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  *
@@ -24,10 +18,13 @@ public class SearchReserveFrame extends javax.swing.JFrame {
      */
     public SearchReserveFrame() {
         initComponents();
+        setLocationRelativeTo(null);
         databaseConnection.getCon();
     }
+
     private void ResultActionPerformed(java.awt.event.ActionEvent evt) {
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -89,15 +86,14 @@ public class SearchReserveFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        try{
+        try {
             Integer.parseInt(otpSearchField.getText());
             databaseConnection.getSearchResult(otpSearchField.getText());
             this.dispose();
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Input is not number. Please Try Again.");
         }
-        
-        
+
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void otpSearchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otpSearchFieldActionPerformed
@@ -111,7 +107,7 @@ public class SearchReserveFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

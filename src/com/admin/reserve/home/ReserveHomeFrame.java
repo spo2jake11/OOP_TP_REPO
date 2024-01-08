@@ -6,6 +6,7 @@ package com.admin.reserve.home;
 
 import com.admin.reserve.search.SearchReserveFrame;
 import com.admin.select.AdminSelectFrame;
+import com.database.connection.databaseConnection;
 
 /**
  *
@@ -39,8 +40,11 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
         MenuTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(1280, 750));
+        setPreferredSize(new java.awt.Dimension(1280, 750));
         setResizable(false);
-        setSize(new java.awt.Dimension(1280, 720));
+        setSize(new java.awt.Dimension(1280, 750));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 153, 51));
 
@@ -55,6 +59,8 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
             .addGap(0, 72, Short.MAX_VALUE)
         );
 
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 650, 1280, -1));
+
         jPanel2.setBackground(new java.awt.Color(255, 153, 51));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -68,6 +74,8 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
             .addGap(0, 72, Short.MAX_VALUE)
         );
 
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
+
         Backbtn.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
         Backbtn.setText("Back");
         Backbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -75,17 +83,25 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
                 BackbtnActionPerformed(evt);
             }
         });
+        getContentPane().add(Backbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 140, -1));
 
-        SearchReservation.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
+        SearchReservation.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         SearchReservation.setText("Search Reservation");
         SearchReservation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SearchReservationActionPerformed(evt);
             }
         });
+        getContentPane().add(SearchReservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, -1, -1));
 
-        ArchiveReserve.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
+        ArchiveReserve.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         ArchiveReserve.setText("Archive Reserve");
+        ArchiveReserve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ArchiveReserveActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ArchiveReserve, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 140, -1, -1));
 
         MenuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,61 +116,29 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(MenuTable);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(SearchReservation)
-                .addGap(54, 54, 54)
-                .addComponent(ArchiveReserve)
-                .addGap(93, 93, 93))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(Backbtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1212, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(Backbtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SearchReservation)
-                    .addComponent(ArchiveReserve))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 502, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 1200, 420));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void SearchReservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchReservationActionPerformed
-        this.dispose();
         SearchReserveFrame srf = new SearchReserveFrame();
-        
         srf.setVisible(true);
     }//GEN-LAST:event_SearchReservationActionPerformed
 
     private void BackbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackbtnActionPerformed
-       
-       AdminSelectFrame show = new AdminSelectFrame();
-       this.dispose();
-       show.setVisible(true);
-    
+
+        AdminSelectFrame show = new AdminSelectFrame();
+        this.dispose();
+        show.setVisible(true);
+
     }//GEN-LAST:event_BackbtnActionPerformed
+
+    private void ArchiveReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ArchiveReserveActionPerformed
+        // TODO add your handling code here:
+        ReserveHomeFrame rhf = new ReserveHomeFrame();
+        databaseConnection.fetchArchivedReservations();
+    }//GEN-LAST:event_ArchiveReserveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,7 +147,7 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {

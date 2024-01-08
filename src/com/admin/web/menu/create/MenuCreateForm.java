@@ -5,6 +5,10 @@
 package com.admin.web.menu.create;
 
 import com.database.connection.databaseConnection;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,6 +22,7 @@ public class MenuCreateForm extends javax.swing.JFrame {
      */
     public MenuCreateForm() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -40,18 +45,19 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         menuPrice = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        imageChooser = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
+        createBtn = new javax.swing.JButton();
+        menuImage = new javax.swing.JTextField();
+        imageOut = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMinimumSize(new java.awt.Dimension(640, 480));
+        setMinimumSize(new java.awt.Dimension(640, 510));
         setPreferredSize(new java.awt.Dimension(640, 510));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 153, 0));
+        jPanel1.setBackground(new java.awt.Color(255, 153, 51));
         jPanel1.setForeground(new java.awt.Color(255, 153, 0));
         jPanel1.setPreferredSize(new java.awt.Dimension(640, 20));
 
@@ -97,7 +103,12 @@ public class MenuCreateForm extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, -1, -1));
 
         menuCategory.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        menuCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        menuCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Main courses", "Appetizers", "Desserts", "Beverages" }));
+        menuCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCategoryActionPerformed(evt);
+            }
+        });
         getContentPane().add(menuCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, 250, -1));
 
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -114,57 +125,86 @@ public class MenuCreateForm extends javax.swing.JFrame {
         jLabel6.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, -1, -1));
 
-        jPanel2.setBackground(new java.awt.Color(153, 102, 0));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, -1, -1));
-
-        jButton1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton1.setText("Choose image");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 350, 160, -1));
-
-        jButton2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton2.setText("Cancel");
-        jButton2.setPreferredSize(new java.awt.Dimension(150, 30));
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
-
-        jButton3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jButton3.setText("Create");
-        jButton3.setPreferredSize(new java.awt.Dimension(150, 30));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        imageChooser.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        imageChooser.setText("Choose image");
+        imageChooser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                imageChooserActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
+        getContentPane().add(imageChooser, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 420, 220, -1));
+
+        backBtn.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        backBtn.setText("Cancel");
+        backBtn.setPreferredSize(new java.awt.Dimension(150, 30));
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 420, -1, -1));
+
+        createBtn.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        createBtn.setText("Create");
+        createBtn.setPreferredSize(new java.awt.Dimension(150, 30));
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(createBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 380, -1, -1));
+
+        menuImage.setEditable(false);
+        menuImage.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuImage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuImageActionPerformed(evt);
+            }
+        });
+        getContentPane().add(menuImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 220, -1));
+        getContentPane().add(imageOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 100, 100));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try{
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        try {
             Integer.parseInt(menuPrice.getText());
-            boolean status = databaseConnection.addMenu(menuName.getText(), menuDetail.getText(), (String) menuCategory.getSelectedItem(), menuPrice.getText());
-            if(status){
+            boolean status = databaseConnection.addMenu(menuName.getText(), menuDetail.getText(), (String) menuCategory.getSelectedItem(), menuPrice.getText(), menuImage.getText());
+            if (status) {
                 JOptionPane.showMessageDialog(null, "Menu Created!!!");
-            }else{
+                this.dispose();
+            } else {
                 JOptionPane.showMessageDialog(null, "Menu not created..");
             }
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Inputted value in price is not integer.");
         }
-        
-    }//GEN-LAST:event_jButton3ActionPerformed
+
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void menuCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_menuCategoryActionPerformed
+
+    private void imageChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageChooserActionPerformed
+        File file = databaseConnection.imageChooser();
+        menuImage.setText(file.toString());
+        try {
+            imageOut.setIcon(new ImageIcon(ImageIO.read(file)));
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }//GEN-LAST:event_imageChooserActionPerformed
+
+    private void menuImageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuImageActionPerformed
+
+    }//GEN-LAST:event_menuImageActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -173,7 +213,7 @@ public class MenuCreateForm extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -202,19 +242,20 @@ public class MenuCreateForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton createBtn;
+    private javax.swing.JButton imageChooser;
+    private javax.swing.JLabel imageOut;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> menuCategory;
     private javax.swing.JTextArea menuDetail;
+    private javax.swing.JTextField menuImage;
     private javax.swing.JTextField menuName;
     private javax.swing.JTextField menuPrice;
     // End of variables declaration//GEN-END:variables
