@@ -22,8 +22,7 @@ public class SearchResultFrame extends javax.swing.JFrame {
     public SearchResultFrame() {
         initComponents();
         setLocationRelativeTo(null);
-        databaseConnection db = new databaseConnection();
-        Map<String, String> map = db.getResult();
+        Map<String, String> map = databaseConnection.getResult();
         resName.setText(map.get("name"));
         resEmail.setText(map.get("email"));
         resTime.setText(map.get("reserveTime"));
