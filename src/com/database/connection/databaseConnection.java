@@ -28,6 +28,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class databaseConnection {
 
     static Map<String, String> results = new HashMap<>();
+    static Map<String, String> value = new HashMap<>();
     public static Connection con = null;
 
     public static void getCon() {
@@ -115,6 +116,27 @@ public class databaseConnection {
         }
     }
 
+    public static boolean updateMenu(String name, String detail, String category, String price, String image, String id) {
+        String query = "UPDATE menu_db SET name = ?, detail = ?, category = ?, price = ?, image = ?, updated_at = CURRENT_TIMESTAMP WHERE ID = ?";
+        getCon();
+        try (PreparedStatement prep = con.prepareStatement(query)) {
+            prep.setString(1, name);
+            prep.setString(2, detail);
+            prep.setString(3, category);
+            prep.setInt(4, Integer.parseInt(price));
+
+            prep.setString(5, image);
+
+            prep.setString(6, id);
+
+            int result = prep.executeUpdate();
+            return result > 0;
+        } catch (SQLException e) {
+
+            return false;
+        }
+    }
+
     public static File imageChooser() {
         JFileChooser file = new JFileChooser();
         file.setCurrentDirectory(new File("."));
@@ -182,6 +204,52 @@ public class databaseConnection {
         }
     }
 
+    public static void fetchArchivedMenu() {
+        try {
+            // Use the connection details from databaseConnection class
+            getCon();
+
+            String folderPath = "C:\\OOP_TP_REPO\\files";
+
+            // Construct the query for fetching archived reservations
+            String query = "SELECT * FROM menu_db";  // Replace 'your_archived_table' with your actual table name
+
+            try (PreparedStatement statement = con.prepareStatement(query); ResultSet resultSet = statement.executeQuery()) {
+
+                // Create the folder if it doesn't exist
+                File folder = new File(folderPath);
+                if (!folder.exists()) {
+                    folder.mkdirs();  // This creates both the folder and any necessary parent folders
+                }
+
+                String filePath = folderPath + File.separator + "archived_menu.txt";
+
+                // Create a FileWriter to write to a text file
+                try (FileWriter fileWriter = new FileWriter(filePath); PrintWriter printWriter = new PrintWriter(fileWriter)) {
+                    // Execute the query
+                    while (resultSet.next()) {
+                        // Process each archived menu
+                        Map<String, String> menu = new HashMap<>();
+                        menu.put("\nname", resultSet.getString("name"));
+                        menu.put("\ndetail", resultSet.getString("detail"));
+                        menu.put("\ncategory", resultSet.getString("category"));
+                        menu.put("\nprice", resultSet.getString("price"));
+                        menu.put("\nimage", resultSet.getString("image"));
+                        menu.put("\ncreated_at", resultSet.getString("created_at"));
+                        menu.put("\nupdated_at", resultSet.getString("updated_at"));
+                        printWriter.println(menu);
+                    }
+                    fileWriter.close();
+                    JOptionPane.showMessageDialog(null, "Archived Menu exported to archived_menu.txt");
+                }
+
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+
+    }
+
     public static void updateStatusInDatabase(String status, String otp) {
         databaseConnection.getCon();
 
@@ -205,6 +273,29 @@ public class databaseConnection {
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
+    }
 
+    public static void setMenuUpdate(int id) {
+        getCon();
+        String query = "SELECT * FROM menu_db WHERE ID = ?";
+        try (PreparedStatement statement = con.prepareStatement(query)) {
+            statement.setInt(1, id);
+            try (ResultSet result = statement.executeQuery()) {
+                if (result.next()) {
+                    value.put("id", result.getString("ID"));
+                    value.put("name", result.getString("name"));
+                    value.put("detail", result.getString("detail"));
+                    value.put("category", result.getString("category"));
+                    value.put("price", result.getString("price"));
+                    value.put("image", result.getString("image"));
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
+    }
+
+    public static Map getMenuUpdate() {
+        return value;
     }
 }

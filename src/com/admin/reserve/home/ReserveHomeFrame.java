@@ -101,7 +101,7 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1280, -1));
 
-        Backbtn.setFont(new java.awt.Font("Segoe UI", 0, 25)); // NOI18N
+        Backbtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         Backbtn.setText("Back");
         Backbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,15 +130,13 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
 
         MenuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Name", "ID", "Seat", "Duration"
             }
         ));
+        MenuTable.setRowHeight(30);
         jScrollPane1.setViewportView(MenuTable);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 1200, 420));

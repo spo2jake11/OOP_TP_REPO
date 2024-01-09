@@ -4,11 +4,13 @@
  */
 package com.admin.web.menu.update;
 
-import com.admin.web.menu.WebMenuFrame;
-import java.awt.Image;
+import com.database.connection.databaseConnection;
 import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,26 +21,25 @@ public class UpdateMenuForm extends javax.swing.JFrame {
     /**
      * Creates new form UpdateMenuFormm
      */
+//        databaseConnection.setMenuUpdate(id);
+    static Map<String, String> value = databaseConnection.getMenuUpdate();
+    static String id = value.get("id");
+
     public UpdateMenuForm() {
+
+    }
+
+    public UpdateMenuForm(int id) {
         initComponents();
         setLocationRelativeTo(null);
-    }
+        databaseConnection.getCon();
+        menuName.setText(value.get("name"));
+        menuDetail.setText(value.get("detail"));
+        menuPrice.setText(value.get("price"));
+        menuCategory.setSelectedItem(value.get("category"));
+        imgLink.setText(value.get("image"));
 
-    private void displayImage(File file) {
-        ImageIcon imageIcon = new ImageIcon(file.getPath());
-        Image image = imageIcon.getImage().getScaledInstance(imageLabel.getWidth(), imageLabel.getHeight(), Image.SCALE_SMOOTH);
-        imageLabel.setIcon(new ImageIcon(image));
-    }
-
-    private void openFileChooser() {
-        JFileChooser fileChooser = new JFileChooser();
-        int result = fileChooser.showOpenDialog(this);
-
-        if (result == JFileChooser.APPROVE_OPTION) {
-            File selectedFile = fileChooser.getSelectedFile();
-            displayImage(selectedFile);
-        }
-
+        System.out.println(value);
     }
 
     /**
@@ -52,21 +53,23 @@ public class UpdateMenuForm extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        descriptionTextField = new javax.swing.JTextArea();
-        jTextField1 = new javax.swing.JTextField();
+        menuDetail = new javax.swing.JTextArea();
+        imgLink = new javax.swing.JTextField();
         categoryTitle = new javax.swing.JLabel();
-        foodNameTextField = new javax.swing.JTextField();
+        menuName = new javax.swing.JTextField();
         DescriptionTitle = new javax.swing.JLabel();
         priceTitle = new javax.swing.JLabel();
-        categoryTextField = new javax.swing.JComboBox<>();
+        menuCategory = new javax.swing.JComboBox<>();
         updateMenuButton = new javax.swing.JButton();
         foodNameTitle = new javax.swing.JLabel();
         cancelMenuButton = new javax.swing.JButton();
         uploadImage2 = new javax.swing.JButton();
         imageLabel = new javax.swing.JLabel();
+        menuPrice = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(640, 480));
+        setPreferredSize(new java.awt.Dimension(640, 510));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -90,25 +93,26 @@ public class UpdateMenuForm extends javax.swing.JFrame {
 
         jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-        descriptionTextField.setColumns(15);
-        descriptionTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        descriptionTextField.setRows(4);
-        jScrollPane1.setViewportView(descriptionTextField);
+        menuDetail.setColumns(15);
+        menuDetail.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuDetail.setRows(4);
+        jScrollPane1.setViewportView(menuDetail);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 260, 100));
 
-        jTextField1.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        jTextField1.setPreferredSize(new java.awt.Dimension(250, 25));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 40));
+        imgLink.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        imgLink.setPreferredSize(new java.awt.Dimension(250, 25));
+        getContentPane().add(imgLink, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, 30));
 
         categoryTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         categoryTitle.setText("Category");
         categoryTitle.setPreferredSize(new java.awt.Dimension(200, 25));
-        getContentPane().add(categoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 50, -1, -1));
+        getContentPane().add(categoryTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
 
-        foodNameTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        foodNameTextField.setPreferredSize(new java.awt.Dimension(250, 25));
-        getContentPane().add(foodNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, 30));
+        menuName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuName.setMinimumSize(new java.awt.Dimension(64, 30));
+        menuName.setPreferredSize(new java.awt.Dimension(250, 30));
+        getContentPane().add(menuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 260, 30));
 
         DescriptionTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         DescriptionTitle.setText("Description");
@@ -120,14 +124,15 @@ public class UpdateMenuForm extends javax.swing.JFrame {
         priceTitle.setPreferredSize(new java.awt.Dimension(200, 25));
         getContentPane().add(priceTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, -1, -1));
 
-        categoryTextField.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        categoryTextField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Appetizers", "Main Dish", "Dessert", "Beverages" }));
-        categoryTextField.addActionListener(new java.awt.event.ActionListener() {
+        menuCategory.setEditable(true);
+        menuCategory.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Appetizers", "Main Dish", "Dessert", "Beverages" }));
+        menuCategory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                categoryTextFieldActionPerformed(evt);
+                menuCategoryActionPerformed(evt);
             }
         });
-        getContentPane().add(categoryTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 250, -1));
+        getContentPane().add(menuCategory, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 250, -1));
 
         updateMenuButton.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         updateMenuButton.setText("Update");
@@ -136,7 +141,7 @@ public class UpdateMenuForm extends javax.swing.JFrame {
                 updateMenuButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(updateMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 160, -1));
+        getContentPane().add(updateMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, 160, -1));
 
         foodNameTitle.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         foodNameTitle.setText("Food Name");
@@ -150,40 +155,56 @@ public class UpdateMenuForm extends javax.swing.JFrame {
                 cancelMenuButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 400, 160, -1));
+        getContentPane().add(cancelMenuButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 400, 160, -1));
 
         uploadImage2.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
-        uploadImage2.setText("Upload");
+        uploadImage2.setText("Upload new image");
         uploadImage2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 uploadImage2ActionPerformed(evt);
             }
         });
-        getContentPane().add(uploadImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 210, 160, -1));
-        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 170, 90, 90));
+        getContentPane().add(uploadImage2, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 310, 250, -1));
+        getContentPane().add(imageLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 150, 100, 100));
+
+        menuPrice.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
+        menuPrice.setPreferredSize(new java.awt.Dimension(250, 25));
+        getContentPane().add(menuPrice, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void categoryTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_categoryTextFieldActionPerformed
+    private void menuCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoryActionPerformed
 
-    }//GEN-LAST:event_categoryTextFieldActionPerformed
+    }//GEN-LAST:event_menuCategoryActionPerformed
 
     private void updateMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateMenuButtonActionPerformed
-        String menuName = "";
-        String description = "";
-        int price = 1;
-
+        try {
+            Integer.parseInt(menuPrice.getText());
+            boolean status = databaseConnection.updateMenu(menuName.getText(), menuDetail.getText(), (String) menuCategory.getSelectedItem(), menuPrice.getText(), imgLink.getText(), id);
+            if (status) {
+                JOptionPane.showMessageDialog(null, "Menu Updated!!!");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(null, "Menu cannot be updated..");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Inputted value in price is not an integer.");
+        }
     }//GEN-LAST:event_updateMenuButtonActionPerformed
 
     private void cancelMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelMenuButtonActionPerformed
-        WebMenuFrame webmenuframe = new WebMenuFrame();
-        webmenuframe.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_cancelMenuButtonActionPerformed
 
     private void uploadImage2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_uploadImage2ActionPerformed
-
-        openFileChooser();
+        File file = databaseConnection.imageChooser();
+        imgLink.setText(file.toString());
+        try {
+            imageLabel.setIcon(new ImageIcon(ImageIO.read(file)));
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_uploadImage2ActionPerformed
 
     /**
@@ -225,15 +246,16 @@ public class UpdateMenuForm extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DescriptionTitle;
     private javax.swing.JButton cancelMenuButton;
-    private javax.swing.JComboBox<String> categoryTextField;
     private javax.swing.JLabel categoryTitle;
-    private javax.swing.JTextArea descriptionTextField;
-    private javax.swing.JTextField foodNameTextField;
     private javax.swing.JLabel foodNameTitle;
     private javax.swing.JLabel imageLabel;
+    private javax.swing.JTextField imgLink;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> menuCategory;
+    private javax.swing.JTextArea menuDetail;
+    private javax.swing.JTextField menuName;
+    private javax.swing.JTextField menuPrice;
     private javax.swing.JLabel priceTitle;
     private javax.swing.JButton updateMenuButton;
     private javax.swing.JButton uploadImage2;

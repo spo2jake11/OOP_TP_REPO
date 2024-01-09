@@ -181,33 +181,26 @@ public class MenuCreateForm extends javax.swing.JFrame {
         String detail = menuDetail.getText().trim();
 
         if (name.isEmpty() && detail.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "MenuName and Description Fields cannot be empty. Please fill in the required information.");
-        
-        } else if (name.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "MenuName Field is empty. Please fill in the necessary information.");
-        
-        } else if (detail.isEmpty()) {
-        JOptionPane.showMessageDialog(null, "Description Field is empty. Please fill in the necessary information.");
-        
+            JOptionPane.showMessageDialog(null, "All textbox must be filled up first.");
         } else {
-            
-        try {
-        Integer.parseInt(menuPrice.getText());
-        boolean status = databaseConnection.addMenu(name, detail, (String) menuCategory.getSelectedItem(), menuPrice.getText(), menuImage.getText());
-        if (status) {
-            JOptionPane.showMessageDialog(null, "Menu Created!!!");
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(null, "Menu not created..");
+
+            try {
+                Integer.parseInt(menuPrice.getText());
+                boolean status = databaseConnection.addMenu(name, detail, (String) menuCategory.getSelectedItem(), menuPrice.getText(), menuImage.getText());
+                if (status) {
+                    JOptionPane.showMessageDialog(null, "Menu Created!!!");
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Menu not created..");
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Inputted value in price is not an integer.");
+            }
         }
-        } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "Inputted value in price is not an integer.");
-    }
-    }
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void menuCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoryActionPerformed
-        
+
     }//GEN-LAST:event_menuCategoryActionPerformed
 
     private void imageChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageChooserActionPerformed
@@ -230,8 +223,7 @@ public class MenuCreateForm extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void menuNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNameActionPerformed
-        
-    
+
     }//GEN-LAST:event_menuNameActionPerformed
 
     /**
