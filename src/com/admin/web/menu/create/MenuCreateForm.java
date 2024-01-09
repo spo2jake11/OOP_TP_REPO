@@ -50,6 +50,8 @@ public class MenuCreateForm extends javax.swing.JFrame {
         createBtn = new javax.swing.JButton();
         menuImage = new javax.swing.JTextField();
         imageOut = new javax.swing.JLabel();
+        lbldescription = new javax.swing.JLabel();
+        lblmenuname1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(640, 510));
@@ -81,6 +83,11 @@ public class MenuCreateForm extends javax.swing.JFrame {
 
         menuName.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         menuName.setPreferredSize(new java.awt.Dimension(250, 25));
+        menuName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuNameActionPerformed(evt);
+            }
+        });
         getContentPane().add(menuName, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
@@ -163,28 +170,44 @@ public class MenuCreateForm extends javax.swing.JFrame {
         });
         getContentPane().add(menuImage, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 380, 220, -1));
         getContentPane().add(imageOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, 100, 100));
+        getContentPane().add(lbldescription, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, 120, 30));
+        getContentPane().add(lblmenuname1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 110, 120, 30));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        try {
-            Integer.parseInt(menuPrice.getText());
-            boolean status = databaseConnection.addMenu(menuName.getText(), menuDetail.getText(), (String) menuCategory.getSelectedItem(), menuPrice.getText(), menuImage.getText());
-            if (status) {
-                JOptionPane.showMessageDialog(null, "Menu Created!!!");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(null, "Menu not created..");
-            }
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Inputted value in price is not integer.");
-        }
+        String name = menuName.getText().trim();
+        String detail = menuDetail.getText().trim();
 
+        if (name.isEmpty() && detail.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "MenuName and Description Fields cannot be empty. Please fill in the required information.");
+        
+        } else if (name.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "MenuName Field is empty. Please fill in the necessary information.");
+        
+        } else if (detail.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Description Field is empty. Please fill in the necessary information.");
+        
+        } else {
+            
+        try {
+        Integer.parseInt(menuPrice.getText());
+        boolean status = databaseConnection.addMenu(name, detail, (String) menuCategory.getSelectedItem(), menuPrice.getText(), menuImage.getText());
+        if (status) {
+            JOptionPane.showMessageDialog(null, "Menu Created!!!");
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Menu not created..");
+        }
+        } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Inputted value in price is not an integer.");
+    }
+    }
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void menuCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCategoryActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_menuCategoryActionPerformed
 
     private void imageChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imageChooserActionPerformed
@@ -205,6 +228,11 @@ public class MenuCreateForm extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void menuNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuNameActionPerformed
+        
+    
+    }//GEN-LAST:event_menuNameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,6 +281,8 @@ public class MenuCreateForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbldescription;
+    private javax.swing.JLabel lblmenuname1;
     private javax.swing.JComboBox<String> menuCategory;
     private javax.swing.JTextArea menuDetail;
     private javax.swing.JTextField menuImage;
