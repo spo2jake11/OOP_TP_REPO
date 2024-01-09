@@ -7,6 +7,14 @@ package com.admin.reserve.home;
 import com.admin.reserve.search.SearchReserveFrame;
 import com.admin.select.AdminSelectFrame;
 import com.database.connection.databaseConnection;
+import static com.database.connection.databaseConnection.con;
+import java.awt.Font;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -20,6 +28,23 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
     public ReserveHomeFrame() {
         initComponents();
         setLocationRelativeTo(null);
+        MenuTable.setFont(new Font("Verdana", Font.PLAIN, 18));
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        databaseConnection.getCon();
+        String sql = "SELECT * FROM reservation_db";
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) MenuTable.getModel();
+            while (rs.next()) {
+                int x = 0;
+                model.addRow(new String[]{rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6),});
+                MenuTable.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
+                x++;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
 
     /**
@@ -92,41 +117,29 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
                 SearchReservationActionPerformed(evt);
             }
         });
-        getContentPane().add(SearchReservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 140, -1, -1));
+        getContentPane().add(SearchReservation, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 140, -1, -1));
 
         ArchiveReserve.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        ArchiveReserve.setText("Archive Reserve");
+        ArchiveReserve.setText("Archive Reservations");
         ArchiveReserve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ArchiveReserveActionPerformed(evt);
             }
         });
-        getContentPane().add(ArchiveReserve, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 140, -1, -1));
+        getContentPane().add(ArchiveReserve, new org.netbeans.lib.awtextra.AbsoluteConstraints(980, 140, -1, -1));
 
         MenuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Name", "Email", "Seat Reserved", "Date Reserved", "Time Reserved"
+                "Name", "ID", "Seat", "Duration"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(MenuTable);
-        if (MenuTable.getColumnModel().getColumnCount() > 0) {
-            MenuTable.getColumnModel().getColumn(0).setResizable(false);
-            MenuTable.getColumnModel().getColumn(1).setResizable(false);
-            MenuTable.getColumnModel().getColumn(2).setResizable(false);
-            MenuTable.getColumnModel().getColumn(3).setResizable(false);
-            MenuTable.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 1200, 420));
 
