@@ -5,9 +5,11 @@
         <group>
             <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/admin/reserve/home/ReserveHomeFrame.java</file>
             <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/admin/reserve/result/SearchResultFrame.java</file>
-            <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/database/connection/databaseConnection.java</file>
             <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/admin/reserve/search/SearchReserveFrame.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/database/connection/databaseConnection.java</file>
             <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/admin/web/menu/WebMenuFrame.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/admin/select/AdminSelectFrame.java</file>
+            <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/admin/web/menu/update/UpdateMenuForm.java</file>
             <file>file:/C:/Users/Admin/Documents/Github%20Repositories/GithubRepo/OOP_TP_REPO/src/com/admin/web/menu/create/MenuCreateForm.java</file>
         </group>
     </open-files>
