@@ -6,6 +6,16 @@ package com.admin.web.menu;
 
 import com.admin.select.AdminSelectFrame;
 import com.admin.web.menu.create.MenuCreateForm;
+import com.admin.web.menu.update.UpdateMenuForm;
+import com.database.connection.databaseConnection;
+import static com.database.connection.databaseConnection.con;
+import java.awt.Font;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,8 +26,28 @@ public class WebMenuFrame extends javax.swing.JFrame {
     /**
      * Creates new form WebMenuFrame
      */
+    static int id;
+
     public WebMenuFrame() {
         initComponents();
+        setLocationRelativeTo(null);
+        menuTable.setFont(new Font("Verdana", Font.PLAIN, 18));
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        databaseConnection.getCon();
+        String sql = "SELECT * FROM menu_db";
+        try {
+            PreparedStatement pst = con.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+            DefaultTableModel model = (DefaultTableModel) menuTable.getModel();
+            while (rs.next()) {
+                int x = 0;
+                model.addRow(new String[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(7),});
+                menuTable.getColumnModel().getColumn(x).setCellRenderer(centerRenderer);
+                x++;
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }
 
     /**
@@ -36,6 +66,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         menuTable = new javax.swing.JTable();
+        archiveMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFocusable(false);
@@ -53,12 +84,17 @@ public class WebMenuFrame extends javax.swing.JFrame {
                 returnBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(returnBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 100, 30));
+        getContentPane().add(returnBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, 100, 30));
 
         updateBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         updateBtn.setText("Update Menu");
         updateBtn.setPreferredSize(new java.awt.Dimension(200, 35));
-        getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(1030, 170, 200, 35));
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, 200, 35));
 
         createBtn.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         createBtn.setText("Create Menu");
@@ -68,7 +104,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
                 createBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(createBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 170, 200, 35));
+        getContentPane().add(createBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 170, 200, 35));
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 51));
         jPanel3.setPreferredSize(new java.awt.Dimension(0, 150));
@@ -107,20 +143,17 @@ public class WebMenuFrame extends javax.swing.JFrame {
         menuTable.setFont(new java.awt.Font("Verdana", 0, 18)); // NOI18N
         menuTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Image", "ID", "Name", "Price"
+                "ID", "Name", "Detail", "Price", "Date Created"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -132,19 +165,35 @@ public class WebMenuFrame extends javax.swing.JFrame {
             }
         });
         menuTable.getTableHeader().setReorderingAllowed(false);
+        menuTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menuTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(menuTable);
         if (menuTable.getColumnModel().getColumnCount() > 0) {
             menuTable.getColumnModel().getColumn(0).setResizable(false);
             menuTable.getColumnModel().getColumn(0).setPreferredWidth(10);
             menuTable.getColumnModel().getColumn(1).setResizable(false);
-            menuTable.getColumnModel().getColumn(1).setPreferredWidth(10);
+            menuTable.getColumnModel().getColumn(1).setPreferredWidth(100);
             menuTable.getColumnModel().getColumn(2).setResizable(false);
-            menuTable.getColumnModel().getColumn(2).setPreferredWidth(500);
+            menuTable.getColumnModel().getColumn(2).setPreferredWidth(450);
             menuTable.getColumnModel().getColumn(3).setResizable(false);
             menuTable.getColumnModel().getColumn(3).setPreferredWidth(10);
+            menuTable.getColumnModel().getColumn(4).setResizable(false);
+            menuTable.getColumnModel().getColumn(4).setPreferredWidth(100);
         }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 1200, 390));
+
+        archiveMenu.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        archiveMenu.setText("Export Menu");
+        archiveMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                archiveMenuActionPerformed(evt);
+            }
+        });
+        getContentPane().add(archiveMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(1020, 170, 200, 35));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -155,10 +204,28 @@ public class WebMenuFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void returnBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_returnBtnActionPerformed
-        AdminSelectFrame admin=new AdminSelectFrame();
+        AdminSelectFrame admin = new AdminSelectFrame();
         this.dispose();
         admin.setVisible(true);
     }//GEN-LAST:event_returnBtnActionPerformed
+
+    private void archiveMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_archiveMenuActionPerformed
+        databaseConnection.fetchArchivedMenu();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_archiveMenuActionPerformed
+
+    private void menuTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuTableMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel tlbModel = (DefaultTableModel) menuTable.getModel();
+        id = Integer.parseInt(tlbModel.getValueAt(menuTable.getSelectedRow(), 0).toString());
+        databaseConnection.setMenuUpdate(id);
+    }//GEN-LAST:event_menuTableMouseClicked
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        // TODO add your handling code here:
+        UpdateMenuForm update = new UpdateMenuForm(id);
+        update.setVisible(true);
+    }//GEN-LAST:event_updateBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -167,7 +234,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -196,6 +263,7 @@ public class WebMenuFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton archiveMenu;
     private javax.swing.JButton createBtn;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
