@@ -133,11 +133,26 @@ public class ReserveHomeFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "ID", "Seat", "Duration"
+                "Name", "Email", "Seat", "Date Reserved", "Time Reserved"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         MenuTable.setRowHeight(30);
         jScrollPane1.setViewportView(MenuTable);
+        if (MenuTable.getColumnModel().getColumnCount() > 0) {
+            MenuTable.getColumnModel().getColumn(0).setResizable(false);
+            MenuTable.getColumnModel().getColumn(1).setResizable(false);
+            MenuTable.getColumnModel().getColumn(2).setResizable(false);
+            MenuTable.getColumnModel().getColumn(3).setResizable(false);
+            MenuTable.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 1200, 420));
 

@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.admin.home;
+
 import com.admin.select.AdminSelectFrame;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Admin
@@ -31,9 +34,9 @@ public class AdminHomeFrame extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        passwordField = new javax.swing.JTextField();
         usernameField = new javax.swing.JTextField();
         signInBtn = new javax.swing.JToggleButton();
+        passwordField = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -82,15 +85,6 @@ public class AdminHomeFrame extends javax.swing.JFrame {
         jLabel2.setPreferredSize(new java.awt.Dimension(120, 35));
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, -1, -1));
 
-        passwordField.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
-        passwordField.setPreferredSize(new java.awt.Dimension(250, 35));
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
-        getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, -1, -1));
-
         usernameField.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
         usernameField.setPreferredSize(new java.awt.Dimension(250, 35));
         usernameField.addActionListener(new java.awt.event.ActionListener() {
@@ -110,21 +104,25 @@ public class AdminHomeFrame extends javax.swing.JFrame {
         });
         getContentPane().add(signInBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 310, -1, -1));
 
+        passwordField.setFont(new java.awt.Font("Verdana", 0, 20)); // NOI18N
+        getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 250, 35));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_usernameFieldActionPerformed
 
     private void signInBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInBtnActionPerformed
-        AdminSelectFrame add = new AdminSelectFrame();
-        this.dispose();
-        add.setVisible(true);
+        if (usernameField.getText().equals("admin123") && String.valueOf(passwordField.getPassword()).equals("admin123")) {
+            AdminSelectFrame add = new AdminSelectFrame();
+            this.dispose();
+            add.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Username and Password do not match. Please try again.");
+        }
+
     }//GEN-LAST:event_signInBtnActionPerformed
 
     /**
@@ -134,7 +132,7 @@ public class AdminHomeFrame extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -167,7 +165,7 @@ public class AdminHomeFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JTextField passwordField;
+    private javax.swing.JPasswordField passwordField;
     private javax.swing.JToggleButton signInBtn;
     private javax.swing.JTextField usernameField;
     // End of variables declaration//GEN-END:variables
